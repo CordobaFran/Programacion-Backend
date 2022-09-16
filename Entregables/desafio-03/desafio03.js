@@ -14,7 +14,10 @@ app.get('/', (req, res)=>{
 
 app.get('/productos', (req, res)=>{
     res.json(productos.getAll())
-    console.log(productos.getAll());
+})
+
+app.get('/productoRandom', (req, res)=>{
+    res.json(productos.getRandomProduct())
 })
 
 app.listen(PORT, ()=>{

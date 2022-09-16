@@ -8,7 +8,7 @@ module.exports = class Container {
 
         try {
             this.products = fs.readFileSync(this.file, 'utf-8')
-            this.products = JSON.parse(this.products) 
+            this.products = JSON.parse(this.products)
         } catch (error) {
             this.products = []
         }
@@ -121,8 +121,12 @@ module.exports = class Container {
     // }
 
     getAll(){
-        console.log(this.products);
         return this.products
+    }
+
+    getRandomProduct(){
+        let randomProduct = this.products[Math.floor(Math.random()* this.products.length)]
+        return randomProduct
     }
 
     deleteById(Number){

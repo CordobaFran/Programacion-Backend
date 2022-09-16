@@ -5,10 +5,10 @@
   },
   {
     "id": 2,
-    "product": "Bananas"
-  }
+    "product": "Peras"
+  },
   {
     "id": 3,
-    "product": "Bananas"
+    "product": "Manzanas"
   }
 ]
