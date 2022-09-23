@@ -11,8 +11,8 @@ const PORT = 8080
 const Contenedor = require('./container')
 const productos= new Contenedor ('productos.txt')
 
+//install body parser to read body on a post
 const bp = require('body-parser')
-
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 
@@ -23,7 +23,6 @@ router.get("/productos", (req, res) => {
 router.get("/productos/:id", (req, res) => {
     let id = parseInt(req.params.id)
     res.json(productos.getById(id))
-    res.send("hola")
 } )
 
 router.post("/productos", (req, res) => {
@@ -31,6 +30,17 @@ router.post("/productos", (req, res) => {
     console.log(req.body);
     productos.addProduct(productsAdd)
     res.status(201).send({status:"saved"})
+} )
+
+router.put("/productos/:id", (req, res) => {
+    let id = parseInt(req.params.id)
+    const productEdited = req.body;
+    res.status(201).send(productos.editById(id, productEdited))
+} )
+
+router.delete("/productos/:id", (req, res) => {
+    let id = parseInt(req.params.id)
+    res.status(201).send(productos.deleteById(id))
 } )
 
 app.use('/api', router)

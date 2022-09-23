@@ -18,16 +18,21 @@ module.exports = class Container {
         return this.products
     }
 
-    getById(Id){
-
+    getById(id){
         let product = this.products.find(element => {
-            return element.id === Id
+            return element.id === id
         })
-        return product
+
+        if (product) {
+            return product
+        } else {
+            return {"error": "producto no encontrado"}
+        }
     }
 
     addProduct(productAdded){
-        this.products.push(productAdded)
+        let lastId = this.products[this.products.length-1].id + 1;
+        this.products.push({"id": lastId,...productAdded})
         console.log(productAdded);
     }
 
@@ -36,82 +41,31 @@ module.exports = class Container {
         return randomProduct
     }
 
-    deleteById(Number){
-        
-        const readProductsToDelete = async () => {
-            try {
-                await fs.readFile(this.file, 'utf-8', (error,contenido) => {
-                    if (error){
-                        console.log(error)
-                    } else {
-                        let fileData;
-                        contenido ? fileData = JSON.parse(contenido) : null
+    editById(id, productEdited){
+        const product = this.products.find(element => {
+            return element.id === id
+        })
 
-                        fileData.forEach((element) => {
-                            const index = fileData.indexOf(element);
-
-                            if (element.id === Number){
-                                
-                                fileData.splice(index, 1)
-
-                                saveProducts(JSON.stringify(fileData, null, 2))
-                                console.log("Producto eliminado")
-
-                            } else {
-                                console.log(`No se encontraron productos con el Id: ${Number}`)
-                            }
-                        })
-
-                    } 
-                })
-
-            } catch (error) {
-                console.log(error)
-            }
+        if (product) {
+            const indexOfProduct = this.products.indexOf(product)
+            this.products[indexOfProduct] = {"id": product.id, ...productEdited}
+            return {status:"edited"}
+        } else {
+            return {"error": "producto no encontrado"}
         }
-
-        const saveProducts = async (dataToWrite) => {
-            try {
-                await fs.writeFile(this.file, dataToWrite , error => {
-                    if (error){
-                        console.log(error)
-                    } else {
-                        console.log("Datos Guardados")
-                    }
-                })
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        readProductsToDelete()
     }
 
-    deleteAll(){
-        const saveProducts = async () => {
-            try {
-                await fs.writeFile(this.file, "" , error => {
-                    if (error){
-                        console.log(error)
-                    } else {
-                        console.log("Datos Borrados")
-                    }
-                })
-            } catch (error) {
-                console.log(error)
-            }
-        }
+    deleteById(id){
+        const product = this.products.find(element => {
+            return element.id === id
+        })
 
-        saveProducts()
+        if (product) {
+            const indexOfProduct = this.products.indexOf(product)
+            this.products.splice(indexOfProduct,1)
+            return {status: "deleted"}
+        } else {
+            return {"error": "producto no encontrado"} 
+        }
     }
 }
-
-// const deletaAll = new Container("./productos.txt").deleteAll()
-
-// const addProducts = new Container("./productos.txt").save("Bananas")
-
-// const findID = new Container("./productos.txt").getById(23)
-
-// const getAll = new Container("./productos.txt").getAll()
-
-// const deleteById = new Container("./productos.txt").deleteById(5)
