@@ -32,8 +32,7 @@ module.exports = class Container {
 
     addProduct(productAdded){
         let lastId = this.products[this.products.length-1].id + 1;
-        this.products.push({"id": lastId,...productAdded})
-        console.log(productAdded);
+        this.products.push({"id": lastId,"name": productAdded.product, "value": parseInt(productAdded.value)})
     }
 
     getRandomProduct(){

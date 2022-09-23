@@ -1,14 +1,17 @@
 [
   {
     "id": 1,
-    "product": "Bananas"
+    "product": "Bananas",
+    "value": 150
   },
   {
     "id": 2,
-    "product": "Peras"
+    "product": "Peras",
+    "value": 310
   },
   {
     "id": 3,
-    "product": "Manzanas"
+    "product": "Manzanas",
+    "value": 75
   }
 ]

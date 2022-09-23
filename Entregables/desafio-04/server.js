@@ -27,7 +27,6 @@ router.get("/productos/:id", (req, res) => {
 
 router.post("/productos", (req, res) => {
     const productsAdd = req.body;
-    console.log(req.body);
     productos.addProduct(productsAdd)
     res.status(201).send({status:"saved"})
 } )
@@ -42,6 +41,8 @@ router.delete("/productos/:id", (req, res) => {
     let id = parseInt(req.params.id)
     res.status(201).send(productos.deleteById(id))
 } )
+
+app.use(express.static('public'))
 
 app.use('/api', router)
 
