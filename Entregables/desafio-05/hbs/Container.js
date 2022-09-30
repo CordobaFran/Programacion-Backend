@@ -32,7 +32,15 @@ module.exports = class Container {
 
     addProduct(productAdded){
         let lastId = this.products[this.products.length-1].id + 1;
-        this.products.push({"id": lastId,"product": productAdded.product, "value": parseInt(productAdded.value)})
+        let img = ()=>{
+            if (productAdded.urlImg) {
+                return productAdded.urlImg
+            } else {
+                return "https://ferreteriaelpuente.com.ar/wp-content/uploads/2015/08/sin-imagen.png"
+            }
+        }
+        this.products.push({"id": lastId,"product": productAdded.product, "value": parseInt(productAdded.value), "urlImg": img()})
+        console.log(this.products);
     }
 
     getRandomProduct(){

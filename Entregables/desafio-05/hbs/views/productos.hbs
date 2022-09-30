@@ -17,7 +17,9 @@
                             <td>
                                 {{product.value}}
                             </td>
-                            {{!-- <td><img src="{{product.urlImagen}}" class="w-25 h-auto"></td> --}}
+                            <td>
+                                <img src="{{product.urlImg}}" class="h-auto" style="object-fit: cover; width: 75px;">
+                            </td>
                         </tr>
                     {{/each}}
                 </tbody>
