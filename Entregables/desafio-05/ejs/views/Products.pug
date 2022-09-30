@@ -1,0 +1,29 @@
+include partials/head.pug
+    
+body
+    section(class="m-5")
+        if productExists
+            table(class="table")
+                thead
+                    tr
+                        th(scope="col") Nombre
+                        th(scope="col") Precio
+                        th(scope="col") Imagen
+                tbody
+                    each product in products
+                        tr
+                            td= product.product
+                            td= product.value
+                            td
+                                img(src=product.urlImagen class="w-25 h-auto")
+        else
+            div(class="alert alert-danger" role="alert") 
+                p No hay productos
+                    
+        a(class="btn btn-primary mt-5" href="../" role="button") Agregar productos
+              
+    script(
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"
+    )

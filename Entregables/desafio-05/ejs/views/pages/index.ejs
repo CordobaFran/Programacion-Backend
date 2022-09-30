@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head") %>
+    <body>
+        <section class="m-4">
+            <h1 class="my-5">Agregar Producto</h1>
+            <form action="/productos" method="post">
+                <div class="row g-3">
+                    <div class="col">
+                        <input type="text" name="product" class="form-control" placeholder="Producto" aria-label="First name" id="product" required="true">
+                    </div>
+                    <div class="col">
+                        <input input type="text" name="value" class="form-control" placeholder="Precio" aria-label="Valor" id="value" required="true">
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <a class="btn btn-primary mt-5" href="./productos" role="button">Ir a Productos</a>
+        </section>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+            crossorigin="anonymous"></script>
+    </body>
+</html>

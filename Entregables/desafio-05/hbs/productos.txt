@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "product": "Bananas",
+    "value": 150
+  },
+  {
+    "id": 2,
+    "product": "Peras",
+    "value": 310
+  },
+  {
+    "id": 3,
+    "product": "Manzanas",
+    "value": 75
+  }
+]
