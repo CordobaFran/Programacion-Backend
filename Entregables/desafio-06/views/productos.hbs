@@ -1,0 +1,33 @@
+<section class="m-4">
+    {{#if productExists}}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Imagen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each products as |product|}}
+                        <tr>
+                            <td>
+                                {{product.product}}
+                            </td>
+                            <td>
+                                {{product.value}}
+                            </td>
+                            <td>
+                                <img src="{{product.urlImg}}" class="h-auto" style="object-fit: cover; width: 75px;">
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        {{else}}
+            <div class="alert alert-danger" role="alert">
+                <p>No se encontraron productos</p>
+            </div>
+        {{/if}}
+        <a class="btn btn-primary mt-5" href="../" role="button">Agregar Productos</a>
+</section>

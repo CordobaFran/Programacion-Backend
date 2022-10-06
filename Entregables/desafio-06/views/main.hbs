@@ -1,0 +1,47 @@
+<section class="m-4">
+    <h1 class="my-5">Agregar Producto</h1>
+    <form onsubmit="return addProduct(this)">
+         <div class="row g-3">
+        <div class="col">
+            <input type="text" name="product" class="form-control" placeholder="Producto" aria-label="First name" id="product" required="true">
+        </div>
+        <div class="col">
+            <input type="text" name="value" class="form-control" placeholder="Precio" aria-label="Valor" id="value" required="true">
+        </div>
+        <div class="col">
+            <input type="text" name="urlImg" class="form-control" placeholder="Url Imagen" aria-label="urlImg" id="urlImg">
+        </div>
+        <div class="col">
+            <input type="submit" value="Agregar" id="submit"></input>
+        </div>
+        </div>
+    </form>
+    {{!-- <a class="btn btn-primary mt-5" href="./test" role="button">Ir a Productos</a> --}}
+</section>
+<section class="m-4">
+    {{#if productExists}}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Imagen</th>
+                    </tr>
+                </thead>
+                <tbody id="products">
+                </tbody>
+            </table>
+        {{else}}
+            <div class="alert alert-danger" role="alert">
+                <p>No se encontraron productos</p>
+            </div>
+        {{/if}}
+</section>
+<section>
+    <form onsubmit="return sendMessage(this)">
+        <input type="text" placeholder="Nombre" id="name">
+        <input type="text" placeholder="Mensaje" id="message">
+        <input type="submit">Enviar</input>
+    </form>
+    <div id="messages"></div>
+</section>
