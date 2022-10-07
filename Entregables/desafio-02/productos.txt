@@ -1,10 +1,14 @@
 [
   {
-    "id": 2,
+    "id": 1,
     "product": "Bananas"
   },
   {
-    "id": 4,
+    "id": 2,
+    "product": "Bananas"
+  }
+  {
+    "id": 3,
     "product": "Bananas"
   }
 ]
