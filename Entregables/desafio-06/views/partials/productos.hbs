@@ -1,0 +1,19 @@
+<section class="m-4">
+    {{#if productExists}}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Imagen</th>
+                    </tr>
+                </thead>
+                <tbody id="products">
+                </tbody>
+            </table>
+        {{else}}
+            <div class="alert alert-danger" role="alert">
+                <p>No se encontraron productos</p>
+            </div>
+        {{/if}}
+</section>

@@ -18,30 +18,7 @@
     </form>
     {{!-- <a class="btn btn-primary mt-5" href="./test" role="button">Ir a Productos</a> --}}
 </section>
-<section class="m-4">
-    {{#if productExists}}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Imagen</th>
-                    </tr>
-                </thead>
-                <tbody id="products">
-                </tbody>
-            </table>
-        {{else}}
-            <div class="alert alert-danger" role="alert">
-                <p>No se encontraron productos</p>
-            </div>
-        {{/if}}
-</section>
-<section>
-    <form onsubmit="return sendMessage(this)">
-        <input type="text" placeholder="Nombre" id="name">
-        <input type="text" placeholder="Mensaje" id="message">
-        <input type="submit">Enviar</input>
-    </form>
-    <div id="messages"></div>
-</section>
+
+{{> productos}}
+
+{{> chat}}
