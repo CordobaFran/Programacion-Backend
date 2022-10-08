@@ -37,15 +37,11 @@ app.use(express.static('./public'))
 
 app.use('', router)
 
-router.get("/test", (req, res) => {
+router.get("/", (req, res) => {
     const products = productos.getAll()
     let productExists = false
     productos.getAll() ? productExists = true : productExists = false
     res.render('main', {products, productExists})
-})
-
-app.get('/', (req, res)=>{
-    res.sendFile('index.html', { root: __dirname})
 })
 
 httpServer.listen(PORT, ()=>{ console.log('Server On') })
