@@ -17,6 +17,7 @@ const io = new IOServer(httpServer)
 const PORT = 8080
 
 const bp = require('body-parser')
+const { SocketAddress } = require('net')
 
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
@@ -47,10 +48,12 @@ router.get("/", (req, res) => {
 httpServer.listen(PORT, ()=>{ console.log('Server On') })
 
 const messages = [
-    {"name": "Franco", "message": "Hola"},
-    {"name": "Kevin", "message": "Hola"},
-    {"name": "Franco", "message": "Todo bien cornudo?"},
-    {"name": "Kevin", "message": "re"},
+    {
+        "name": "Servidor",
+        "message": "Deje su mensaje a continuación",
+        "date": "8/10/2022, 03:47:37"
+    },
+
 ]
 
 io.on('connection', socket=>{
@@ -62,6 +65,7 @@ io.on('connection', socket=>{
                 io.sockets.emit('products-sv', products)
             }
     )
+    socket.emit("messages", messages)
     socket.on("new-message", (data)=>{
         messages.push(data)
         io.sockets.emit("messages-sv", messages)
