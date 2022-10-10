@@ -61,7 +61,7 @@ const renderMessages = (data) => {
         return (`
         <div class=${ownMsg.align}>
             <div class='${ownMsg.color} p-2 mx-2 textBox'>
-                <stroke class="fw-bold fs-6">${el.name} :</stroke> <br>
+                <stroke class="fw-bold fs-6">${el.name}</stroke> <br>
                 <span class="fs-6 fw-light font-monospace msj">${el.message}</span><br>
                 <span class="d-flex flex-row-reverse time">${el.date}</span>
             </div>
