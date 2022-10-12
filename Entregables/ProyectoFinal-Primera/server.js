@@ -3,14 +3,19 @@ const { Router } = express
 
 const app = express()
 const router = Router()
+const methodOverride = require('method-override')
 
 const Contenedor = require('./container')
-const productos = new Contenedor('productos.txt')
+const productos = new Contenedor('./json/productos.json')
+
+const Cart = require('./cart')
+const cart = new Cart('./json/carrito.json')
 
 const PORT = 8080
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 app.set('view engine', 'ejs');
 
@@ -32,7 +37,13 @@ router.post('/productos', (req, res) => {
     const productAdded = req.body;
     console.log(productAdded);
     productos.addProduct(productAdded)
-    res.status(201).send({status:'saved'})
+    res.status(201).send({status:'saved'}).redirect('./productos' )
+})
+
+router.get("/productos/:id", (req,res) => {
+    let id = parseInt(req.params.id)
+    const product = productos.getById(id)  
+    res.render('pages/productoDetalle', { product })
 })
 
 router.put( '/productos/:id', (req, res) => {
@@ -46,17 +57,15 @@ router.delete('/productos/:id', (req, res) => {
     res.status(201).send(productos.deleteById(id))
 })
 
-router.get("/productos/:id", (req,res) => {
-    let id = parseInt(req.params.id)
-    const product = productos.getById(id)
-    
-    res.render('pages/productoDetalle', { product })
-})
 
 // CARRITO
 
-router.get('/carrito', (req, res)=>{
-  res.render('pages/carrito')  
+router.get('/carrito', (req, res)=>{   
+  res.render('pages/carrito')
+})
+
+router.post('/carrito', (req, res) => {
+    res.status(201).send(cart.addCart())
 })
 
 // CONFIG
