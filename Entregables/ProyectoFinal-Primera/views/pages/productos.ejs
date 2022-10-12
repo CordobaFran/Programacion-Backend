@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head") %>
+    <body>
+        <h1 class="m-5">Productos</h1>
+        <%- include("../partials/addProductForm.ejs") %>
+        <section class="m-5">
+            <table class="table table-striped align-middle text-center">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Imágen</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <!-- <% if (products.length) { %> -->
+                        <% products.forEach( product => { %>
+                            <tr>
+                                <th scope="col"><%= product.product %></th>
+                                <th scope="col"><%= product.value %></th>
+                                <th scope="col"><img src="<%= product.urlImg %>" alt="<%= product.name + product.id %>" class="img-thumbnail img__products"></th>
+                            </tr>
+                        <% }) %>
+                    <!-- <% } %> -->
+                </tbody>
+              </table>
+        </section>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+            crossorigin="anonymous"></script>
+        <script src="/script.js"></script>    
+    </body> 
+</html>
