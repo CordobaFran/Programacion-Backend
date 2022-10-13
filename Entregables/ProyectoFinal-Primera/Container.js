@@ -19,7 +19,7 @@ module.exports = class Container {
     }
 
     getById(id){
-        let product = this.products.find(element => {
+        const product = this.products.find(element => {
             return element.id === id
         })
 
@@ -31,17 +31,18 @@ module.exports = class Container {
     }
 
     addProduct(productAdded){
-        let lastId = this.products[this.products.length-1].id + 1;
-        let img = ()=>{
+        const id = this.products[this.products.length-1].id + 1;
+        const timeStamp = new Date().toLocaleString();
+        const urlImg = ()=>{
             if (productAdded.urlImg) {
-                console.log(productAdded.urlImg);
                 return productAdded.urlImg
             } else {
                 return "https://ferreteriaelpuente.com.ar/wp-content/uploads/2015/08/sin-imagen.png"
             }
         }
-        this.products.push({"id": lastId,"product": productAdded.product, "value": parseInt(productAdded.value), "urlImg": img()})
-        // console.log(this.products);
+        this.products.push({id, timeStamp, ...productAdded, urlImg: urlImg()})
+        // this.products.push({"id": lastId,"product": productAdded.product, "value": parseInt(productAdded.value), "urlImg": img()})
+        return {status: "saved", "product": this.products[this.products.length - 1]}
     }
 
     getRandomProduct(){
@@ -57,7 +58,7 @@ module.exports = class Container {
         if (product) {
             const indexOfProduct = this.products.indexOf(product)
             this.products[indexOfProduct] = {"id": product.id, ...productEdited}
-            return {status:"edited"}
+            return {status:"edited", "product": this.products[indexOfProduct]}
         } else {
             return {"error": "producto no encontrado"}
         }
@@ -71,7 +72,7 @@ module.exports = class Container {
         if (product) {
             const indexOfProduct = this.products.indexOf(product)
             this.products.splice(indexOfProduct,1)
-            return {status: "deleted"}
+            return {status: "deleted", "product": product}
         } else {
             return {"error": "producto no encontrado"} 
         }

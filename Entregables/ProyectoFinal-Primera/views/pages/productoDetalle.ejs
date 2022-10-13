@@ -3,8 +3,9 @@
 <%- include("../partials/head") %>
     <body>
         <h1 class="m-5"><%= product.product %></h1>
-        <%- include("../partials/editProductForm") %>
-        <%- include("../partials/deleteProductForm") %>
+        <% if (admin) {%>  
+            <%- include("../partials/editProductForm") %>
+        <% } %>
         <section class="m-5">
             <table class="table table-striped align-middle text-center">
                 <thead class="table-dark">

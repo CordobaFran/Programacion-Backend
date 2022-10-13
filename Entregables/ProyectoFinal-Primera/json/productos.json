@@ -1,28 +1,31 @@
 [
   {
     "id": 1,
+    "timeStamp": "13/10/2022 00:47:01",
     "product": "Bananas",
-    "descrption": "Bananas de primera calidad",
-    "code": "4123",
     "value": 150,
+    "code": "4123",
+    "description": "Bananas de primera calidad",
     "stock": 15,
     "urlImg": "https://carrefourar.vtexassets.com/arquivos/ids/209558/2301954000008_02.jpg?v=637650839149230000"
   },
   {
     "id": 2,
+    "timeStamp": "13/10/2022 00:47:01",
     "product": "Peras",
-    "descrption": "Bananas de primera calidad",
-    "code": "4151",
     "value": 310,
+    "code": "4151",
+    "description": "Peras de primera calidad",
     "stock": 13,
     "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/08/propiedades-de-la-pera.jpg"
   },
   {
     "id": 3,
+    "timeStamp": "13/10/2022 00:47:01",
     "product": "Manzanas",
-    "descrption": "Bananas de primera calidad",
-    "code": "1522",
     "value": 75,
+    "code": "1522",
+    "description": "Manzanas de primera calidad",
     "stock": 23,
     "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/07/manzana_roja.jpg"
   }

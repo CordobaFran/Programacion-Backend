@@ -1,4 +1,5 @@
-<section class="m-5">
+<section class="m-5 border p-4">
+  <h3 class="mb-5 text-center">Editar Producto</h3>
     <form action="/api/productos/<%= product.id %>?_method=PUT" method="post" class="row g-3">
         <div class="col-md-4">
           <label for="product" class="form-label">Producto</label>
@@ -8,24 +9,25 @@
           <label for="value" class="form-label">$ Precio</label>
           <input type="number" name="value" class="form-control" id="price" value="<%= product.value %>">
         </div>
-        <!-- <div class="col-md-4">
+        <div class="col-md-4">
           <label for="code" class="form-label">Código</label>
-          <input type="number" class="form-control" id="code">
+          <input type="number" name="code" class="form-control" id="code" value="<%= product.code %>">
         </div>
         <div class="col-12">
           <label for="description" class="form-label">Descripción</label>
-          <input type="text" class="form-control" id="description">
-        </div> -->
+          <input type="text" name="description" class="form-control" id="description" value="<%= product.description %>">
+        </div>
+        <div class="col-md-4">
+          <label for="stock" class="form-label">Stock</label>
+          <input type="text" name="stock" class="form-control" id="stock" value="<%= product.stock %>">
+        </div>
         <div class="col-8">
           <label for="imgUrl" class="form-label">Foto (URL)</label>
           <input type="text" name="urlImg" class="form-control" id="urlImg" placeholder="Ingrese la dirección URL de la imágen" value="<%= product.urlImg %>">
         </div>
-        <!-- <div class="col-md-4">
-          <label for="stock" class="form-label">Stock</label>
-          <input type="text" class="form-control" id="stock">
-        </div> -->
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary mt-4">Guardar</button>
+        <div class="col-12 text-center">
+          <button type="submit" class="btn btn-success mt-4">Actualizar</button>
         </div>
       </form>
+      <%- include("../partials/deleteProductForm") %>
 </section>
