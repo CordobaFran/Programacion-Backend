@@ -1,7 +1,15 @@
 
 const fs = require('fs')
-const { readFile } = require('fs/promises')
-const { stringify } = require('querystring')
+
+// const saveFile = async (msj) => {
+//     await fs.writeFile(this.file, JSON.stringify(this.products, null, 2), error => {
+//         if (error) {
+//             console.log(error);  
+//         } else {
+//             console.log(msj);
+//         }
+//     } )
+// }
 
 module.exports = class Container {
     constructor(file){
@@ -54,11 +62,6 @@ module.exports = class Container {
         return {status: "saved", "product": this.products[this.products.length - 1]}
     }
 
-    getRandomProduct(){
-        let randomProduct = this.products[Math.floor(Math.random()* this.products.length)]
-        return randomProduct
-    }
-
     editById(id, productEdited){
         const product = this.products.find(element => {
             return element.id === id
@@ -67,6 +70,15 @@ module.exports = class Container {
         if (product) {
             const indexOfProduct = this.products.indexOf(product)
             this.products[indexOfProduct] = {"id": product.id, ...productEdited}
+            
+            fs.writeFile(this.file, JSON.stringify(this.products, null, 2), error => {
+                if (error) {
+                    console.log(error);  
+                } else {
+                    console.log("edited");
+                }
+            } )
+
             return {status:"edited", "product": this.products[indexOfProduct]}
         } else {
             return {"error": "producto no encontrado"}
@@ -81,6 +93,15 @@ module.exports = class Container {
         if (product) {
             const indexOfProduct = this.products.indexOf(product)
             this.products.splice(indexOfProduct,1)
+
+            fs.writeFile(this.file, JSON.stringify(this.products, null, 2), error => {
+                if (error) {
+                    console.log(error);  
+                } else {
+                    console.log("deleted");
+                }
+            } )
+
             return {status: "deleted", "product": product}
         } else {
             return {"error": "producto no encontrado"} 
