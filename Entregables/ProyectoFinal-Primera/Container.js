@@ -1,6 +1,7 @@
 
 const fs = require('fs')
 const { readFile } = require('fs/promises')
+const { stringify } = require('querystring')
 
 module.exports = class Container {
     constructor(file){
@@ -41,6 +42,14 @@ module.exports = class Container {
             }
         }
         this.products.push({id, timeStamp, ...productAdded, urlImg: urlImg()})
+        
+        fs.writeFile(this.file, JSON.stringify(this.products, null, 2), error => {
+            if (error) {
+                console.log(error);  
+            } else {
+                console.log("guardado");
+            }
+        } )
         // this.products.push({"id": lastId,"product": productAdded.product, "value": parseInt(productAdded.value), "urlImg": img()})
         return {status: "saved", "product": this.products[this.products.length - 1]}
     }

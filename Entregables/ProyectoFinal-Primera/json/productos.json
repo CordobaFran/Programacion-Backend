@@ -28,5 +28,25 @@
     "description": "Manzanas de primera calidad",
     "stock": 23,
     "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/07/manzana_roja.jpg"
+  },
+  {
+    "id": 4,
+    "timeStamp": "13/10/2022 21:01:37",
+    "product": "asdasd",
+    "value": "123",
+    "code": "",
+    "description": "1d",
+    "stock": "",
+    "urlImg": "https://ferreteriaelpuente.com.ar/wp-content/uploads/2015/08/sin-imagen.png"
+  },
+  {
+    "id": 5,
+    "timeStamp": "13/10/2022 21:07:30",
+    "product": "asdasd",
+    "value": "123",
+    "code": "12312",
+    "description": "3123",
+    "stock": "1231",
+    "urlImg": "https://ferreteriaelpuente.com.ar/wp-content/uploads/2015/08/sin-imagen.png"
   }
 ]

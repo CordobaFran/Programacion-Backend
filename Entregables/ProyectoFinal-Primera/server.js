@@ -105,6 +105,9 @@ router.delete('/carrito/:id/productos', (req, res) => {
     res.status(201).send(cart.deleteProduct(cartId, productId))
 })
 
+app.all('*', (req, res) => {
+    res.status(404).send({error:404, description: "ruta no encontrada"})
+})
 
 // LISTEN
 
