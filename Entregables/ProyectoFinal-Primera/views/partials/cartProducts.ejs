@@ -1,0 +1,20 @@
+<section class="m-5">
+    <table class="table table-striped align-middle text-center">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Imágen</th>
+          </tr>
+        </thead>
+        <tbody>
+                <% products.forEach( product => { %>
+                    <tr>
+                        <th scope="col"><%= product.product %></th>
+                        <th scope="col"><%= product.value %></th>
+                        <th scope="col"><img src="<%= product.urlImg %>" alt="<%= product.name + product.id %>" class="img-thumbnail img__products"></th>
+                    </tr>
+                <% }) %>
+        </tbody>
+      </table>
+</section>

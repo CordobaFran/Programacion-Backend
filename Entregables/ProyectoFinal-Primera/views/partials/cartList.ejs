@@ -1,0 +1,20 @@
+<section class="m-5">
+    <table class="table table-striped align-middle text-center">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Fecha de creación</th>
+            <th scope="col">N° de productos</th>
+          </tr>
+        </thead>
+        <tbody>
+                <% carts.forEach( cart => { %>
+                    <tr>
+                        <th scope="col"><%= cart.id %></th>
+                        <th scope="col"><%= cart.timeStamp %></th>
+                        <th scope="col"><a href="carrito/<%= cart.id %>/productos" ><%= cart.products.length %></a></th>
+                    </tr>
+                <% }) %>
+        </tbody>
+      </table>
+</section>

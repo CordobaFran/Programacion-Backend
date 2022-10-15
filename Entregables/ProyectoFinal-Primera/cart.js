@@ -52,7 +52,7 @@ module.exports = class Cart {
     addProduct(cartId, productId){
         const selectedCart = this.cart.find(el => el.id === cartId)
         const indexOfCart = this.cart.indexOf(selectedCart)
-        const product = products.getById(productId.id)
+        const product = products.getById(parseInt(productId.id))
         if (selectedCart){
             if (product.id){
                 this.cart[indexOfCart].products.push(product)

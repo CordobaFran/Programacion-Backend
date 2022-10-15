@@ -1,0 +1,12 @@
+<div class="addProductForm__div col-6 mx-auto">
+    <form action="/api/carrito/1/productos" method="post" class="addProductForm">
+        <select class="form-select cart__select" aria-label="Default select example" required>
+            <option value="0" selected disabled>Ingrese n° de carrito</option>
+            <% carts.forEach( cart => { %>
+            <option value="<%- cart.id %>"><%- cart.id %></option>
+            <% }) %>
+        </select>
+        <input type="text" name="id" id="" value=<%= id %> hidden>
+        <input type="submit" class="btn btn-primary submit__btn my-2" value="Agregar">
+    </form>      
+</div>

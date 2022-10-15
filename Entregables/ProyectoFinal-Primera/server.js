@@ -44,7 +44,8 @@ app.post('/', (req, res) => {
 router.get("/productos", (req, res) => {
     const products = productos.getAll()
     console.log(admin);
-    res.render('pages/productos', {products, admin})
+    const carts = cart.getAll()
+    res.render('pages/productos', {products, admin, carts})
     // res.json(productos.getAll())
 })
 
@@ -73,9 +74,10 @@ router.delete('/productos/:id', (req, res) => {
 
 // CARRITO
 
-router.get('/carrito', (req, res) =>{   
-//   res.render('pages/carrito')
-    res.json(cart.getAll())
+router.get('/carrito', (req, res) => {
+  const carts = cart.getAll()
+  res.render('pages/carrito', { carts })
+    // res.json(cart.getAll())
 })
 
 router.post('/carrito', (req, res) => {
@@ -87,10 +89,12 @@ router.delete('/carrito/:id', (req, res) => {
     res.status(201).send(cart.deleteCartById(id))
 })
 
-router.get('/carrito/:id/productos', (req, res) =>{
-    const cartId = parseInt(req.params.id)   
+router.get('/carrito/:id/productos', (req, res) => {
+    const cartId = parseInt(req.params.id)
+    const products = cart.getProductsById(cartId)
+    res.render('pages/carritoDetalle', { cartId, products })
     //   res.render('pages/carrito')
-        res.json(cart.getProductsById(cartId))
+        // res.json(cart.getProductsById(cartId))
     })
 
 router.post('/carrito/:id/productos', (req, res) => {
