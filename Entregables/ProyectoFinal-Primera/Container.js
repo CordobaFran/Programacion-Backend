@@ -1,16 +1,5 @@
 
 const fs = require('fs')
-
-// const saveFile = async (msj) => {
-//     await fs.writeFile(this.file, JSON.stringify(this.products, null, 2), error => {
-//         if (error) {
-//             console.log(error);  
-//         } else {
-//             console.log(msj);
-//         }
-//     } )
-// }
-
 module.exports = class Container {
     constructor(file){
         this.file = file
