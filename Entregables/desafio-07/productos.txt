@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "product": "Bananas",
+    "value": 150,
+    "urlImg": "https://carrefourar.vtexassets.com/arquivos/ids/209558/2301954000008_02.jpg?v=637650839149230000"
+  },
+  {
+    "id": 2,
+    "product": "Peras",
+    "value": 310,
+    "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/08/propiedades-de-la-pera.jpg"
+  },
+  {
+    "id": 3,
+    "product": "Manzanas",
+    "value": 75,
+    "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/07/manzana_roja.jpg"
+  }
+]
