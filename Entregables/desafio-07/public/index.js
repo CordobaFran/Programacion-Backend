@@ -1,33 +1,53 @@
 const socket = io.connect()
 
-const addProduct = ()=>{
-    const newProduct = {
-        "product" : document.getElementById("product").value,
-        "value" : document.getElementById("value").value,
+const addProduct = () => {
+    const newProduct = [{
+        "product": document.getElementById("product").value,
+        "value": document.getElementById("value").value,
         "urlImg": document.getElementById("urlImg").value
-    }
+    }]
     socket.emit('add-product', newProduct)
 
     return false
 }
 
-const renderProducts = (data)=>{
-    const html = data.map((el)=>{
-        return (`
-        <tr>
-            <td class="px-5">
-                ${el.product}
-            </td>
-            <td class="px-5">
-                ${el.value}
-            </td>
-            <td class="px-5">
-                <img src="${el.urlImg}" class="h-auto" style="object-fit: cover; width: 75px;">
-            </td>
-        </tr>
-        `)
-    }).join(" ")
-    document.getElementById('products').innerHTML = html
+const renderProducts = (data) => {
+    if (data) {
+        const html = data.map((el) => {
+            if (el.urlImg == null || el.urlImg == "") {
+                return (`
+                <tr>
+                    <td class="px-5">
+                        ${el.product}
+                    </td>
+                    <td class="px-5">
+                        ${el.value}
+                    </td>
+                    <td class="px-5">
+                        <img src="${"https://ferreteriaelpuente.com.ar/wp-content/uploads/2015/08/sin-imagen.png"}" class="h-auto" style="object-fit: cover; width: 75px;">
+                    </td>
+                </tr>
+                `)
+            } else {
+                return (`
+                <tr>
+                    <td class="px-5">
+                        ${el.product}
+                    </td>
+                    <td class="px-5">
+                        ${el.value}
+                    </td>
+                    <td class="px-5">
+                        <img src="${el.urlImg}" class="h-auto" style="object-fit: cover; width: 75px;">
+                    </td>
+                </tr>
+                `)
+            }
+        }).join(" ")
+        document.getElementById('products').innerHTML = html
+    } else {
+        console.warn("No hay productos")
+    }
 }
 
 socket.on("products-sv", data => {
@@ -36,7 +56,7 @@ socket.on("products-sv", data => {
 
 //----Chat----
 
-const sendMessage = () =>{
+const sendMessage = () => {
     const date = new Date().toLocaleString()
     const newMessage = {
         "name": document.getElementById('name').value,
@@ -52,11 +72,11 @@ const renderMessages = (data) => {
     let ownMsg
     const name = document.getElementById('name').value
 
-    const html = data.map((el)=>{
+    const html = data.map((el) => {
         if (name == el.name) {
-            ownMsg = {"align": "text-end", "color": "bg-info"}
+            ownMsg = { "align": "text-end", "color": "bg-info" }
         } else {
-            ownMsg = {"align": "text-start", "color": "bg-secondary"}
+            ownMsg = { "align": "text-start", "color": "bg-secondary" }
         }
         return (`
         <div class=${ownMsg.align}>
@@ -75,7 +95,7 @@ const renderMessages = (data) => {
 
 }
 
-socket.on('messages', data =>{
+socket.on('messages', data => {
     renderMessages(data)
 })
 

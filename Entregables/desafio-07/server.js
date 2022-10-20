@@ -1,5 +1,6 @@
 const express = require('express')
 const { Router } = express
+const { options } = require( './options/connectOptions.js')
 
 const { Server: HttpServer } = require('http')
 const { Server: IOServer } = require('socket.io')
@@ -8,8 +9,12 @@ const app = express()
 const router = Router()
 
 const handlebars = require('express-handlebars')
+
 const Contenedor = require('./container')
-const productos= new Contenedor ('productos.txt')
+const productos= new Contenedor (options.mysql,  "productos")
+
+const Chat = require('./chat')
+const msjs = new Chat ("chat")
 
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
@@ -38,37 +43,51 @@ app.use(express.static('./public'))
 
 app.use('', router)
 
-router.get("/", (req, res) => {
-    const products = productos.getAll()
+router.get("/", async (req, res) => {
+    const products = await productos.getAll()
     let productExists = false
-    productos.getAll() ? productExists = true : productExists = false
-    res.render('main', {products, productExists})
+    await products ? productExists = true : productExists = false
+    
+    res.render( 'main', {products, productExists})
+    // res.json( {products})
+})
+
+router.get("/:id", async (req, res) => {
+    const id = parseInt(req.params.id)
+    const productDetail = productos.getById(id)
+    res.json(await productDetail)
+})
+
+router.put("/:id", async (req, res) => {
+    const id = parseInt(req.params.id)
+    const productData = req.body
+    res.json(await productos.editById(id, productData))
+})
+
+router.delete("/:id", async (req, res) => {
+    const id = parseInt(req.params.id)
+    res.json(await productos.deleteById({'id': id}))
 })
 
 httpServer.listen(PORT, ()=>{ console.log('Server On') })
 
-const messages = [
-    {
-        "name": "Servidor",
-        "message": "Deje su mensaje a continuación",
-        "date": "8/10/2022, 03:47:37"
-    },
 
-]
-
-io.on('connection', socket=>{
-    const products = productos.getAll()
+io.on('connection', async socket=>{
+    const products = await productos.getAll()
+    const messages = await msjs.getMsj()
+    
     console.log("usuario conectado");
     socket.emit("products-sv", products)
-    socket.on('add-product', (data)=>{
-                productos.addProduct(data)
-                io.sockets.emit('products-sv', products)
+    socket.on('add-product', async (data)=>{
+                await productos.addProduct(data)
+                io.sockets.emit('products-sv', await productos.getAll())
             }
     )
     socket.emit("messages", messages)
-    socket.on("new-message", (data)=>{
-        messages.push(data)
-        io.sockets.emit("messages-sv", messages)
+    socket.on("new-message", async (data)=>{
+            await msjs.addMsj(data)
+            io.sockets.emit("messages-sv", await msjs.getMsj())
+        
     })
     
 
