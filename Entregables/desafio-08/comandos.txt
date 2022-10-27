@@ -1,0 +1,202 @@
+// CREA DB ECOMMERCE
+use ecommerce
+
+// CREAR COLECCIONES
+db.createCollection("productos")
+db.createCollection("mensajes")
+
+//AGREGAR PRODUCTOS
+
+db.productos.insert([
+  {
+    "id": 1,
+    "product": "Bananas",
+    "value": 150,
+    "urlImg": "https://carrefourar.vtexassets.com/arquivos/ids/209558/2301954000008_02.jpg?v=637650839149230000"
+  },
+  {
+    "id": 2,
+    "product": "Peras",
+    "value": 310,
+    "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/08/propiedades-de-la-pera.jpg"
+  },
+  {
+    "id": 3,
+    "product": "Manzanas",
+    "value": 500,
+    "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/07/manzana_roja.jpg"
+  },
+  {
+    "id": 4,
+    "product": "Bananas1",
+    "value": 1500,
+    "urlImg": "https://carrefourar.vtexassets.com/arquivos/ids/209558/2301954000008_02.jpg?v=637650839149230000"
+  },
+  {
+    "id": 5,
+    "product": "Peras1",
+    "value": 2500,
+    "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/08/propiedades-de-la-pera.jpg"
+  },
+  {
+    "id": 6,
+    "product": "Manzanas1",
+    "value": 3500,
+    "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/07/manzana_roja.jpg"
+  },
+  {
+    "id": 7,
+    "product": "Bananas2",
+    "value": 4500,
+    "urlImg": "https://carrefourar.vtexassets.com/arquivos/ids/209558/2301954000008_02.jpg?v=637650839149230000"
+  },
+  {
+    "id": 8,
+    "product": "Peras2",
+    "value": 1850,
+    "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/08/propiedades-de-la-pera.jpg"
+  },
+  {
+    "id": 9,
+    "product": "Manzanas2",
+    "value": 2845,
+    "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/07/manzana_roja.jpg"
+  },
+  {
+    "id": 10,
+    "product": "Manzanas3",
+    "value": 4100,
+    "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/07/manzana_roja.jpg"
+  }
+])
+
+//AGREGAR MENSAJES
+
+db.mensajes.insertMany([
+    {
+        "user": "Administrador",
+	"msj": "Deje su mensaje a continuación",
+        "timeStamp": "13/10/2022 04:02:29"
+        
+    },
+    {
+        "user": "Fran",
+	"msj": "msj 1",
+        "timeStamp": "13/10/2022 04:03:29"
+        
+    },
+    {
+        "user": "Ramiro",
+	"msj": "msj 2",
+        "timeStamp": "13/10/2022 04:04:29"
+        
+    },
+    {
+        "user": "Fran",
+	"msj": "msj 3",
+        "timeStamp": "13/10/2022 04:05:29"
+        
+    },
+    {
+        "user": "Ramiro",
+	"msj": "msj 4",
+        "timeStamp": "13/10/2022 04:06:29"
+        
+    },
+    {
+        "user": "Fran",
+	"msj": "msj 5",
+        "timeStamp": "13/10/2022 04:07:29"
+        
+    },
+    {
+        "user": "Ramiro",
+	"msj": "msj 6",
+        "timeStamp": "13/10/2022 04:08:29"
+        
+    },
+    {
+        "user": "Fran",
+	"msj": "msj 7",
+        "timeStamp": "13/10/2022 04:09:29"
+        
+    },
+    {
+        "user": "Ramiro",
+	"msj": "msj 8",
+        "timeStamp": "13/10/2022 04:10:29"
+        
+    },
+    {
+        "user": "Fran",
+	"msj": "msj 9",
+        "timeStamp": "13/10/2022 04:11:29"
+        
+    },
+])
+
+// 3) LISTAR PRODUCTOS y mensajes
+
+db.productos.find()
+db.mensajes.find()
+
+// 4) CONTAR CANTIDAD DE DOCUMENTOS EN COLECCION
+
+db.mensajes.documentCount()
+db.productos.documentCount()
+
+// 5)a) AGREGAR PRODUCTO
+
+db.productos.insertOne(
+  {
+    "id": 11,
+    "product": "Peras3",
+    "value": 2850,
+    "urlImg": "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/08/propiedades-de-la-pera.jpg"
+  }
+)
+
+
+// 5)
+//b) i) PRODUCTOS CON PRECIO MENOR QUE 1000
+
+db.productos.find({"value": {$lt: 1000}})
+
+//b) ii) PRODUCTOS ENTRE 1000 Y 3000
+
+db.productos.find({$and:[{"value": {$gte: 1000}},{"value": {$lte: 3000}}]})
+
+//b) iii) PRODUCTOS MAYOR A 3000
+
+db.productos.find({"value": {$gt: 3000}})
+
+//b) iv) 3er PRODUCTO MAS BARATO
+
+db.productos.find({}, {"product": 1, "_id": 0}).sort({"value": 1}).skip(2).limit(1)
+
+
+//c) AGREGAR STOCK 100
+
+db.productos.updateMany({}, {$set: {"stock": 100}}, {upsert: true})
+
+
+//d) UPDATE PRODUCTOS MAYORES $4000 A STOCK 0
+
+db.productos.updateMany({"value": {$gt: 4000}}, {$set: {"stock": 0}})
+
+
+//e) ELIMINAR PRODUCTOS MENOR A 1000
+
+db.productos.deleteMany({"value": {$lt: 1000}})
+
+6) CREACION DE USUARIO LECTOR
+
+db.createUser({ user: "pepe", pwd: "asd456", roles: [{ role: "read", db: "productos" }] })
+
+
+
+
+
+
+
+

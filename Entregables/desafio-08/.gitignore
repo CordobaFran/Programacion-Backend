@@ -1,0 +1,2 @@
+db/mongodb/mongod.lock
+db/mongodb/WiredTiger.lock
