@@ -34,6 +34,7 @@ export default class ContainerFirebase {
         { id: documents.id, ...documents.data() }
       ))
       console.log(docs);
+      return docs
     } catch (error) {
       console.log(error);
     }
@@ -45,6 +46,7 @@ export default class ContainerFirebase {
       const doc = await queryDoc.get()
       const document = doc.data()
       console.log(document);
+      return document
 
     } catch (error) {
       console.log(error);
