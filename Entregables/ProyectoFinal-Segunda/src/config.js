@@ -1,5 +1,5 @@
 export default {
-    database: "firebase",
+    database: "firebase",//firebase, mongo
     firebase: {
         "type": "service_account",
         "project_id": "ecommerce-c3149",

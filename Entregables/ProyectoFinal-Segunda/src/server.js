@@ -28,9 +28,9 @@ router.get("/productos", async (req, res) => {
     res.json(await productos.getAll())
 })
 
-router.post('/productos', (req, res) => {
+router.post('/productos', async (req, res) => {
     const productAdded = req.body;
-    res.status(201).send(productos.addProduct(productAdded))
+    res.status(201).send(await productos.create(productAdded))
 })
 
 router.get("/productos/:id", async (req, res) => {
@@ -44,9 +44,9 @@ router.put('/productos/:id', async (req, res) => {
     res.status(201).send(await productos.update(id, dataToEdit))
 })
 
-router.delete('/productos/:id', (req, res) => {
-    const id = parseInt(req.params.id)
-    res.status(201).send(productos.deleteById(id))
+router.delete('/productos/:id', async (req, res) => {
+    const id = req.params.id
+    res.status(201).send(await productos.delete(id))
 })
 
 // CARRITO

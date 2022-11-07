@@ -24,6 +24,7 @@ export default class Products {
             const newProduct = new ProductsModel(product)
             await newProduct.save()
             console.log('product added');
+            return { status: "product added" }
         } catch (error) {
             console.log(error);
         }
@@ -53,6 +54,7 @@ export default class Products {
         try {
             let products = await ProductsModel.updateOne({ _id: id }, { $set: params })
             console.log('Edited', products);
+            return { status: "modified" }
         } catch (error) {
             console.log(error);
         }
@@ -62,6 +64,7 @@ export default class Products {
         try {
             let products = await ProductsModel.deleteOne({ _id: id })
             console.log('Deleted', products);
+            return { status: `Product ${id} deleted`}
         } catch (error) {
             console.log(error);
         }
