@@ -53,13 +53,12 @@ export default class ContainerFirebase {
     }
   }
   //Update Docs
-  async update(id) {
+  async update(id, data) {
     try {
       const doc = this.query.doc(id)
-      const update = await doc.update({
-        nombre: 'Franco'
-      })
-      console.log(`documento actualizado`);
+      await doc.update(data)
+      console.log(`documento actualizado`, data);
+      return { status: "modified" }
 
     } catch (error) {
       console.log(error);

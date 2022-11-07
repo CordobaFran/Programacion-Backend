@@ -13,13 +13,13 @@ export default class Products {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             })
-            console.log('db connected');
+            console.log('Mongo db connected');
         } catch (error) {
             console.log(error);
         }
     }
     //Create document
-    async createProduct(product) {
+    async create(product) {
         try {
             const newProduct = new ProductsModel(product)
             await newProduct.save()
@@ -33,6 +33,7 @@ export default class Products {
         try {
             let products = await ProductsModel.find({})
             console.log(products);
+            return products
         } catch (error) {
             console.log(error);
         }
@@ -42,6 +43,7 @@ export default class Products {
         try {
             let products = await ProductsModel.find({ _id: id })
             console.log(products);
+            return products
         } catch (error) {
             console.log(error);
         }

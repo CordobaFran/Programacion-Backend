@@ -1,5 +1,7 @@
 import express from 'express'
-import Productos from './daos/productos/productosDaoFirebase.js'
+import Productos from './daos/productos/productosDao.js'
+console.log(Productos);
+// import Productos from './daos/productos/productosDaoFirebase.js'
 // const express = require('express')
 const { Router } = express
 
@@ -36,10 +38,10 @@ router.get("/productos/:id", async (req, res) => {
     res.json(await productos.getById(id))
 })
 
-router.put('/productos/:id', (req, res) => {
-    const id = parseInt(req.params.id)
-    const productEdited = req.body;
-    res.status(201).send(productos.editById(id, productEdited))
+router.put('/productos/:id', async (req, res) => {
+    const id = req.params.id
+    const dataToEdit = req.body;
+    res.status(201).send(await productos.update(id, dataToEdit))
 })
 
 router.delete('/productos/:id', (req, res) => {
