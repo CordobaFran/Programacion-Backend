@@ -2,6 +2,7 @@ import config from "../config.js";
 import CarritoDaoFirebase from "./carritos/carritoDaoFirebase.js";
 import CarritoDaoMongoDb from "./carritos/carritoDaoMongoDb.js"
 import CarritoDaoArchivo from "./carritos/carritoDaoArchivo.js"
+import CarritoDaoMemoria from "./carritos/carritoDaoMemoria.js"
 
 let database = config.database
 let carritos
@@ -23,6 +24,13 @@ switch (database) {
         break;
     case "archivo":
         carritos = class MainCarritoDao extends CarritoDaoArchivo {
+            constructor() {
+                super()
+            }
+        }
+        break;
+    case "memoria":
+        carritos = class MainCarritoDao extends CarritoDaoMemoria {
             constructor() {
                 super()
             }

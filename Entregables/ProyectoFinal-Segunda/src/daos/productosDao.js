@@ -2,6 +2,7 @@ import config from "../config.js";
 import ProductosDaoFirebase from "./productos/productosDaoFirebase.js";
 import ProductosDaoMongoDb from "./productos/productosDaoMongoDb.js"
 import ProductosDaoArchivo from "./productos/productosDaoArchivo.js"
+import ProductosDaoMemoria from "./productos/productosDaoMemoria.js"
 
 let database = config.database
 let productos
@@ -22,7 +23,14 @@ switch (database) {
         }
         break;
     case "archivo":
-        productos = class MainProductsArchivo extends ProductosDaoArchivo {
+        productos = class MainProductsDao extends ProductosDaoArchivo {
+            constructor() {
+                super()
+            }
+        }
+        break;
+    case "memoria":
+        productos = class MainProductsDao extends ProductosDaoMemoria {
             constructor() {
                 super()
             }
