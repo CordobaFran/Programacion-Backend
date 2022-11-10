@@ -1,6 +1,6 @@
-import config from "../../config.js";
-import ProductosDaoFirebase from "./productosDaoFirebase.js";
-import ProductosDaoMongoDb from "./productosDaoMongoDb.js"
+import config from "../config.js";
+import ProductosDaoFirebase from "./productos/productosDaoFirebase.js";
+import ProductosDaoMongoDb from "./productos/productosDaoMongoDb.js"
 
 let database = config.database
 let productos

@@ -18,8 +18,8 @@ export default class ContainerFirebase {
     try {
       const doc = this.query.doc()
       await doc.create(product)
-      console.log("product added");
-      return { status: "product added" }
+      console.log("added");
+      return { status: "added" }
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +68,7 @@ export default class ContainerFirebase {
       const doc = this.query.doc(id)
       await doc.delete()
       console.log(`documento eliminado`);
-      return { status: `Product ${id} deleted`}
+      return { status: `${id} deleted`}
 
     } catch (error) {
       console.log(error);
