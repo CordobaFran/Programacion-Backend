@@ -1,5 +1,5 @@
 export default {
-  database: "mongo",//firebase, mongo
+  database: "archivo",//firebase, mongo
   mongo: {
     "URL": 'mongodb+srv://FrancoCordoba:Franco8492@cluster0.7lls3u0.mongodb.net/ecommerce?retryWrites=true&w=majority'
   },
