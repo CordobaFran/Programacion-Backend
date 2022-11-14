@@ -53,20 +53,19 @@ router.get("/", async (req, res) => {
 })
 
 router.get("/:id", async (req, res) => {
-    const id = parseInt(req.params.id)
-    const productDetail = productos.getById(id)
-    res.json(await productDetail)
+    const id = req.params.id
+    res.json(await productos.getById(id))
 })
 
 router.put("/:id", async (req, res) => {
-    const id = parseInt(req.params.id)
+    const id = req.params.id
     const productData = req.body
     res.json(await productos.editById(id, productData))
 })
 
 router.delete("/:id", async (req, res) => {
-    const id = parseInt(req.params.id)
-    res.json(await productos.deleteById({'id': id}))
+    const id = req.params.id
+    res.json(await productos.deleteById(id))
 })
 
 httpServer.listen(PORT, ()=>{ console.log('Server On') })

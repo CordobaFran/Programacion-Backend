@@ -1,19 +1,33 @@
 
-const knex = require('knex')
+const mongoose = require('mongoose')
 const { options } = require('./options/connectOptions')
+const { ProductsModel } = require("./models/products")
+
 
 // createDb()
 
-
 module.exports = class Container {
-    constructor(options, table) {
-        this.knex = knex(options)
-        this.table = table
+    constructor() {
+        this.Model = ProductsModel
+        this.connect()
+    }
+
+    connect() {
+        try {
+            mongoose.connect(options.mongoDb.connection, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true
+            })
+            console.log('Mongo db connected');
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     async getAll() {
         try {
-            return JSON.parse(JSON.stringify(await this.knex.from(this.table).select('*')));;
+            let products = await this.Model.find()
+            return products
         } catch (error) {
             console.log(error);
         }
@@ -21,77 +35,77 @@ module.exports = class Container {
 
     async getById(id) {
         try {
-            return JSON.parse(JSON.stringify(await this.knex.from(this.table).select('*').where('id', '=', parseInt(id))))
+            let products = await this.Model.find({ _id: id })
+            return products
         } catch (error) {
             console.log(error);
         }
     }
 
     async addProduct(productAdded) {
+        console.log(productAdded);
         try {
-            return this.knex(this.table).insert(productAdded)
+            const newProduct = new this.Model(productAdded)
+            await newProduct.save()
+            return { status: "product added" }
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
-    async editById(id, productEdited) {
+    async editById(id, params) {
         try {
-            await this.knex.from(this.table).where('id', '=', id).update(productEdited)
-            return {
-                msj: "product edited"
-            }
+            await this.Model.updateOne({ _id: id }, { $set: params })
+            return { status: "modified" }
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
     async deleteById(id) {
         try {
-            await this.knex.from(this.table).where(id).del()
-            return {
-                msj: "product deleted"
-            }
+            await this.Model.deleteOne({ _id: id })
+            return { status: `Product ${id} deleted`}
         } catch (error) {
-
+            console.log(error);
         }
     }
 }
 
 
 
-function createDb() {  
-    knex(options.mysql).schema.createTable('productos', tables => {
-        tables.increments('id')
-        tables.string('product')
-        tables.string('value')
-        tables.string('urlImg')
-    }).then(() => {
-        console.log("table created");
-    }).catch((error) => {
-        console.log(error); throw error;
-    }).finally(() => {
-        knex(options.sqlite).destroy()
-    })
+// function createDb() {
+//     knex(options.mysql).schema.createTable('productos', tables => {
+//         tables.increments('id')
+//         tables.string('product')
+//         tables.string('value')
+//         tables.string('urlImg')
+//     }).then(() => {
+//         console.log("table created");
+//     }).catch((error) => {
+//         console.log(error); throw error;
+//     }).finally(() => {
+//         knex(options.sqlite).destroy()
+//     })
 
-    knex(options.mysql).from('productos').insert(
-        [
-            {
-                product: "Manzanas",
-                value: 450,
-                urlImg: "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/07/manzana_roja.jpg"
-            },
-            {
-                product: "Peras",
-                value: 450,
-                urlImg: "https://perfumesyfragancias.online/wp-content/uploads/2018/10/poire.jpg"
-            }
-        ]
-    ).then(() => {
-        console.log("products added");
-    }).catch((error) => {
-        console.log(error); throw error;
-    }).finally(() => {
-        knex(options.sqlite).destroy()
-    })
-}
+//     knex(options.mysql).from('productos').insert(
+//         [
+//             {
+//                 product: "Manzanas",
+//                 value: 450,
+//                 urlImg: "https://elegifruta.com.ar/onepage/wp-content/uploads/2017/07/manzana_roja.jpg"
+//             },
+//             {
+//                 product: "Peras",
+//                 value: 450,
+//                 urlImg: "https://perfumesyfragancias.online/wp-content/uploads/2018/10/poire.jpg"
+//             }
+//         ]
+//     ).then(() => {
+//         console.log("products added");
+//     }).catch((error) => {
+//         console.log(error); throw error;
+//     }).finally(() => {
+//         knex(options.sqlite).destroy()
+//     })
+// }

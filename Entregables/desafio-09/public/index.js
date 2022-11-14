@@ -1,11 +1,11 @@
 const socket = io.connect()
 
 const addProduct = () => {
-    const newProduct = [{
+    const newProduct = {
         "product": document.getElementById("product").value,
         "value": document.getElementById("value").value,
         "urlImg": document.getElementById("urlImg").value
-    }]
+    }
     socket.emit('add-product', newProduct)
 
     return false

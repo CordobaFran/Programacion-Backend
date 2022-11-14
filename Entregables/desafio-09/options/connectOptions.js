@@ -14,6 +14,9 @@ const options = {
             filename: "./DB/ecommerce.sqlite"
         },
         userNullAsDefault: true
+    },
+    mongoDb: {
+        connection: "mongodb+srv://FrancoCordoba:Franco8492@cluster0.7lls3u0.mongodb.net/ecommerce?retryWrites=true&w=majority"
     }
 }
 
