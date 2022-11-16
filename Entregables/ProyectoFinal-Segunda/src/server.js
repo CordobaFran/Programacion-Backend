@@ -56,6 +56,11 @@ router.get('/carrito', async (req, res) => {
     res.json(await cart.getAll())
 })
 
+router.get('/carrito/:id', async (req, res) => {
+    const cartId = req.params.id
+    res.json(await cart.getById(cartId))
+})
+
 router.post('/carrito', async (req, res) => {
     const newCart = req.body
     res.status(201).send(await cart.create(newCart))
@@ -72,10 +77,23 @@ router.delete('/carrito/:id', (req, res) => {
     res.status(201).send(cart.delete(id))
 })
 
+<<<<<<< HEAD
 router.get('/carrito/:id/productos', async (req, res) => {
     const cartId = req.params.id
     res.json(await cart.getById(cartId))
 })
+=======
+router.post('/carrito/:id', async (req, res) => {
+    const id = req.params.id
+    const addProduct = req.body
+    res.status(201).send(await cart.addToCart(addProduct, id))
+})
+
+// router.get('/carrito/:id/productos', (req, res) => {
+//     const cartId = parseInt(req.params.id)
+//     res.json(cart.getById(cartId))
+// })
+>>>>>>> 23a811ea253fd72036452278853ba0d67a27fc39
 
 // router.post('/carrito/:id/productos', (req, res) => {
 //     const cartId = parseInt(req.params.id)

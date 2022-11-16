@@ -1,5 +1,9 @@
 export default {
+<<<<<<< HEAD
   database: "firebase",//firebase, mongo
+=======
+  database: "archivo",//firebase, mongo
+>>>>>>> 23a811ea253fd72036452278853ba0d67a27fc39
   mongo: {
     "URL": 'mongodb+srv://FrancoCordoba:Franco8492@cluster0.7lls3u0.mongodb.net/ecommerce?retryWrites=true&w=majority'
   },

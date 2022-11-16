@@ -51,7 +51,6 @@ export default class Products {
     async getById(id) {
         try {
             let products = await this.Model.find({ _id: id })
-            console.log(products);
             return products
         } catch (error) {
             console.log(error);
