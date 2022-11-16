@@ -1,11 +1,9 @@
 
 const mongoose = require('mongoose')
-const { options } = require('./options/connectOptions')
-const { ProductsModel } = require("./models/products")
-
+const { options } = require('../options/connectOptions')
+const { ProductsModel } = require("../models/products")
 
 // createDb()
-
 module.exports = class Container {
     constructor() {
         this.Model = ProductsModel
@@ -68,6 +66,14 @@ module.exports = class Container {
             return { status: `Product ${id} deleted`}
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    async deleteall() {
+        try {
+            await this.Model.deleteMany({})
+        } catch (error) {
+            
         }
     }
 }
