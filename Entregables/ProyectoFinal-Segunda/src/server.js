@@ -72,10 +72,10 @@ router.delete('/carrito/:id', (req, res) => {
     res.status(201).send(cart.delete(id))
 })
 
-// router.get('/carrito/:id/productos', (req, res) => {
-//     const cartId = parseInt(req.params.id)
-//     res.json(cart.getById(cartId))
-// })
+router.get('/carrito/:id/productos', async (req, res) => {
+    const cartId = req.params.id
+    res.json(await cart.getById(cartId))
+})
 
 // router.post('/carrito/:id/productos', (req, res) => {
 //     const cartId = parseInt(req.params.id)

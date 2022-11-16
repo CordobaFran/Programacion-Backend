@@ -5,17 +5,14 @@
   },
   {
     "id": 2,
-    "product": "Peras",
-    "value": null
+    "product": "Peras"
   },
   {
     "id": 4,
-    "product": "Peras",
-    "value": null
+    "product": "Naranjas"
   },
   {
-    "id": 5,
-    "product": "Bananas",
-    "value": null
+     "id": 5,
+    "product": "Bananas"
   }
 ]
