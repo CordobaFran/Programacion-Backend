@@ -8,7 +8,7 @@ admin.initializeApp({
 const db = admin.firestore();
 
 export default class ContainerFirebase {
-
+  
   constructor(collection) {
     this.query = db.collection(collection)
   }

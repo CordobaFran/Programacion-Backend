@@ -79,9 +79,9 @@ router.delete('/carrito/:id', (req, res) => {
 
 // CART PRODUCTS CRUD
 
-router.get('/carrito/:id/productos', (req, res) => {
+router.get('/carrito/:id/productos', async (req, res) => {
     const cartId = req.params.id
-    res.json(cart.getProductsFromCart(cartId))
+    res.json(await cart.getProductsFromCart(cartId))
 })
 
 router.post('/carrito/:id', async (req, res) => {
@@ -90,10 +90,10 @@ router.post('/carrito/:id', async (req, res) => {
     res.status(201).send(await cart.addToCart(addProduct, id))
 })
 
-router.delete('/carrito/:id/productos', (req, res) => {
-    const cartId = parseInt(req.params.id)
+router.delete('/carrito/:id/productos', async (req, res) => {
+    const cartId = req.params.id
     const productId = req.body
-    res.status(201).send(cart.removeFromCart(cartId, productId))
+    res.status(201).send(await cart.removeFromCart(cartId, productId))
 })
 
 //  NOT FOUND ROUTES
