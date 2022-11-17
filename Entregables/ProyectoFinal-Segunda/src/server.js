@@ -77,35 +77,26 @@ router.delete('/carrito/:id', (req, res) => {
     res.status(201).send(cart.delete(id))
 })
 
-<<<<<<< HEAD
-router.get('/carrito/:id/productos', async (req, res) => {
+// CART PRODUCTS CRUD
+
+router.get('/carrito/:id/productos', (req, res) => {
     const cartId = req.params.id
-    res.json(await cart.getById(cartId))
+    res.json(cart.getProductsFromCart(cartId))
 })
-=======
+
 router.post('/carrito/:id', async (req, res) => {
     const id = req.params.id
     const addProduct = req.body
     res.status(201).send(await cart.addToCart(addProduct, id))
 })
 
-// router.get('/carrito/:id/productos', (req, res) => {
-//     const cartId = parseInt(req.params.id)
-//     res.json(cart.getById(cartId))
-// })
->>>>>>> 23a811ea253fd72036452278853ba0d67a27fc39
+router.delete('/carrito/:id/productos', (req, res) => {
+    const cartId = parseInt(req.params.id)
+    const productId = req.body
+    res.status(201).send(cart.removeFromCart(cartId, productId))
+})
 
-// router.post('/carrito/:id/productos', (req, res) => {
-//     const cartId = parseInt(req.params.id)
-//     const productId = req.body
-//     res.status(201).send(cart.addProduct(cartId, productId))
-// })
-
-// router.delete('/carrito/:id/productos', (req, res) => {
-//     const cartId = parseInt(req.params.id)
-//     const productId = req.body
-//     res.status(201).send(cart.delete(cartId, productId))
-// })
+//  NOT FOUND ROUTES
 
 app.all('*', (req, res) => {
     res.status(404).send({ error: 404, description: "ruta no encontrada" })

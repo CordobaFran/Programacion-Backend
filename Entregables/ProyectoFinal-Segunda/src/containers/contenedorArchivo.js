@@ -7,23 +7,23 @@ export default class ContenedorArchivo {
         this.file = file
 
         try {
-            this.products = fs.readFileSync(this.file, 'utf-8')
-            this.products = JSON.parse(this.products)
+            this.cartOrProducts = fs.readFileSync(this.file, 'utf-8')
+            this.cartOrProducts = JSON.parse(this.cartOrProducts)
         } catch (error) {
-            this.products = []
+            this.cartOrProducts = []
         }
     }
 
     create(productAdded) {
         let lastId
-        if (this.products.length) {
-            lastId = this.products[this.products.length - 1].id + 1;
+        if (this.cartOrProducts.length) {
+            lastId = this.cartOrProducts[this.cartOrProducts.length - 1].id + 1;
         } else {
             lastId = 1
         }
 
-        this.products.push({ "id": lastId, "product": productAdded.product })
-        let newProduct = this.products
+        this.cartOrProducts.push({ "id": lastId, "product": productAdded.product })
+        let newProduct = this.cartOrProducts
         try {
             fs.writeFile(this.file, JSON.stringify(newProduct, "", 2), 'utf-8', (err) => {
                 if (err) {
@@ -39,11 +39,11 @@ export default class ContenedorArchivo {
     }
 
     getAll() {
-        return this.products
+        return this.cartOrProducts
     }
 
     getById(id) {
-        let product = this.products.find(element => {
+        let product = this.cartOrProducts.find(element => {
             return element.id === parseInt(id)
         })
 
@@ -55,15 +55,15 @@ export default class ContenedorArchivo {
     }
 
     update(id, productEdited) {
-        const product = this.products.find(element => {
+        const product = this.cartOrProducts.find(element => {
             return element.id === parseInt(id)
         })
 
         if (product) {
-            const indexOfProduct = this.products.indexOf(product)
-            this.products[indexOfProduct] = { "id": product.id, ...product, ...productEdited }
+            const indexOfProduct = this.cartOrProducts.indexOf(product)
+            this.cartOrProducts[indexOfProduct] = { "id": product.id, ...product, ...productEdited }
 
-            let products = this.products
+            let products = this.cartOrProducts
             try {
                 fs.writeFile(this.file, JSON.stringify(products, "", 2), 'utf-8', (err) => {
                     if (err) {
@@ -82,15 +82,15 @@ export default class ContenedorArchivo {
     }
 
     delete(id) {
-        const product = this.products.find(element => {
+        const product = this.cartOrProducts.find(element => {
             return element.id === parseInt(id)
         })
 
         if (product) {
-            const indexOfProduct = this.products.indexOf(product)
-            this.products.splice(indexOfProduct, 1)
+            const indexOfProduct = this.cartOrProducts.indexOf(product)
+            this.cartOrProducts.splice(indexOfProduct, 1)
 
-            let products = this.products
+            let products = this.cartOrProducts
             try {
                 fs.writeFile(this.file, JSON.stringify(products, "", 2), 'utf-8', (err) => {
                     if (err) {
