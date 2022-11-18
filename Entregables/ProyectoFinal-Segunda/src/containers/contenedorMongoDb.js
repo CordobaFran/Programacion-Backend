@@ -41,7 +41,7 @@ export default class Products {
     async getAll() {
         try {
             let products = await this.Model.find({})
-            console.log(products);
+            // console.log(products);
             return products
         } catch (error) {
             console.log(error);
