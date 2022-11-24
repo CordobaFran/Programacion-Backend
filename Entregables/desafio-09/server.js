@@ -28,6 +28,9 @@ const { SocketAddress } = require('net')
 const ApiProductosMock = require('./api/productos')
 const apiProductos = new ApiProductosMock()
 
+// const schemaNormalizr = require('./utils/schemaNormalizr')
+// const { normalizedChatpost, denormalizedChatPost } = schemaNormalizr
+
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 

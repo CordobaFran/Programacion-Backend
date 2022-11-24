@@ -96,9 +96,11 @@ const renderMessages = (data) => {
 }
 
 socket.on('messages', data => {
+    console.log(data);
     renderMessages(data)
 })
 
 socket.on('messages-sv', data => {
+    console.log(data, "sv");
     renderMessages(data)
 })
