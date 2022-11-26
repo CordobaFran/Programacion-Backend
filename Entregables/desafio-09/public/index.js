@@ -96,7 +96,9 @@ const renderMessages = (data) => {
 }
 
 socket.on('messages', data => {
-    console.log(data);
+    // denormalize()
+    const denormalizado = normalizr.denormalize(data.normalizedChatpost.result, data.post, data.normalizedChatpost.entities)
+    console.log(denormalizado);
     renderMessages(data)
 })
 

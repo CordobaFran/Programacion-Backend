@@ -7,7 +7,7 @@ const { ProductsModel } = require("../models/products")
 module.exports = class Container {
     constructor() {
         this.Model = ProductsModel
-        this.connect()
+        // this.connect()
     }
 
     connect() {
@@ -23,12 +23,12 @@ module.exports = class Container {
     }
 
     async getAll() {
-        try {
-            let products = await this.Model.find()
-            return products
-        } catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     let products = await this.Model.find()
+        //     return products
+        // } catch (error) {
+        //     console.log(error);
+        // }
     }
 
     async getById(id) {

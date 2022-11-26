@@ -1,18 +1,33 @@
 const normalizr = require('normalizr')
 const { schema, normalize, denormalize } = normalizr
 
-const authorSchema = new schema.Entity('authors')
+const chatMsjs= require("../db/chatMsg")
+const util = require('util')
 
-const commentShema = new schema.Entity('comments')
+function print(text = "", objeto) {
+    console.log(text, util.inspect(objeto, false, 12, true))
+}
 
-const postSchema = new schema.Entity('posts', {
-    author: authorSchema,
-    comments: [commentShema]
+const user = new schema.Entity('users')
+const message = new schema.Entity('messages')
+const comment = new schema.Entity('comments', {
+    author: user,
+    messages: message
+})
+const article = new schema.Entity('articles', {
+    author: user,
+    messages: [comment]
+})
+const post = new schema.Entity('posts', {
+    posts: [article]
 })
 
 
-const normalizedChatpost = normalize(chat, postSchema)
+const normalizedChatpost = normalize(chatMsjs, post)
+const denormalizedChatPost = denormalize(normalizedChatpost.result, post, normalizedChatpost.entities)
 
-const denormalizedChatPost = denormalize(normalizedChatpost.result, postSchema, normalizedChatpost.entities)
+print("NORMALIZADO", normalizedChatpost);
+// print("DENORMALIZADO", denormalizedChatPost);
 
-module.exports = {normalizedChatpost, denormalizedChatPost}
+
+module.exports = { normalizedChatpost, denormalizedChatPost, post }

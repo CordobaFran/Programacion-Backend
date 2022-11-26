@@ -12,15 +12,13 @@ const handlebars = require('express-handlebars')
 const Contenedor = require('./containers/Container')
 const productos = new Contenedor()
 
-const Chat = require('./chat')
+const { Chat } = require('./chat')
 const msjs = new Chat("chat")
 
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 
 const PORT = 8080
-
-const { faker } = require('@faker-js/faker')
 
 const bp = require('body-parser')
 const { SocketAddress } = require('net')
