@@ -1,4 +1,5 @@
 const socket = io.connect()
+let denormalizado
 
 const addProduct = () => {
     const newProduct = {
@@ -59,21 +60,44 @@ socket.on("products-sv", data => {
 const sendMessage = () => {
     const date = new Date().toLocaleString()
     const newMessage = {
-        "name": document.getElementById('name').value,
+        author: {
+            "email": document.getElementById('email').value,
+            "name": document.getElementById('name').value,
+            "lastname": document.getElementById('lastname').value,
+            "age": document.getElementById('age').value,
+            "alias": document.getElementById('alias').value,
+            "avatar": document.getElementById('avatar').value,
+        },
         "message": document.getElementById('message').value,
         "date": date
     }
     document.getElementById('message').value = ""
-    socket.emit('new-message', newMessage)
+    
+    const denormalizedMsgs = denormalizado.posts[0].messages
+    denormalizedMsgs.push(pushNewMsg(newMessage))
+    
+    const posts = {
+        id: "999",
+        posts: [
+            {
+                id: 1,
+                author: denormalizado.posts[0].author,
+                messages: denormalizedMsgs
+            }]
+    }
+
+    const normalizedMsgs = normalizr.normalize(posts, post)
+
+    socket.emit('new-message', normalizedMsgs)
     return false
 }
 
 const renderMessages = (data) => {
     let ownMsg
-    const name = document.getElementById('name').value
+    const email = document.getElementById('email').value
 
     const html = data.map((el) => {
-        if (name == el.name) {
+        if (email == el.author.email) {
             ownMsg = { "align": "text-end", "color": "bg-info" }
         } else {
             ownMsg = { "align": "text-start", "color": "bg-secondary" }
@@ -81,7 +105,7 @@ const renderMessages = (data) => {
         return (`
         <div class=${ownMsg.align}>
             <div class='${ownMsg.color} p-2 mx-2 textBox'>
-                <stroke class="fw-bold fs-6">${el.name}</stroke> <br>
+                <stroke class="fw-bold fs-6">${el.author.alias}</stroke> <br>
                 <span class="fs-6 fw-light font-monospace msj">${el.message}</span><br>
                 <span class="d-flex flex-row-reverse time">${el.date}</span>
             </div>
@@ -94,15 +118,42 @@ const renderMessages = (data) => {
     messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight
 
 }
+// ---------------------- PUSH NEW MSJ TO MSJS ------------------------
 
-socket.on('messages', data => {
-    // denormalize()
-    const denormalizado = normalizr.denormalize(data.normalizedChatpost.result, data.post, data.normalizedChatpost.entities)
-    console.log(denormalizado);
-    renderMessages(data)
+const pushNewMsg = (newMsg) => {
+    const denormalizedMsgs = denormalizado.posts[0].messages
+    const lastId = denormalizedMsgs[denormalizedMsgs.length - 1].id + 1
+    newMsg = { id: lastId, ...newMsg }
+    return newMsg
+}
+
+// ---------------------- SCHEMA NORMALIZR ------------------------
+
+const user = new normalizr.schema.Entity('users', {}, { idAttribute: "email" })
+const message = new normalizr.schema.Entity('messages')
+const comment = new normalizr.schema.Entity('comments', {
+    author: user,
+    messages: message
+})
+const article = new normalizr.schema.Entity('articles', {
+    author: user,
+    messages: [comment]
+})
+const post = new normalizr.schema.Entity('posts', {
+    posts: [article]
 })
 
+// ----------------------  SEND DATA TO SERVER ------------------------
+
+socket.on('messages', data => {
+    denormalizado = normalizr.denormalize(data.normalizedChatpost.result, post, data.normalizedChatpost.entities)
+    renderMessages(denormalizado.posts[0].messages)
+    // console.log(denormalizado);
+})
+
+
 socket.on('messages-sv', data => {
-    console.log(data, "sv");
-    renderMessages(data)
+    const denormalizado = normalizr.denormalize(data.normalizedChatpost.result, post, data.normalizedChatpost.entities)
+    // console.log(data, "sv");
+    renderMessages(denormalizado.posts[0].messages)
 })

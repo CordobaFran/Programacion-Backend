@@ -48,13 +48,13 @@ app.use(express.static('./public'))
 
 app.use('/api', router)
 
-router.post('/popular', async (req, res, next)=> {
-    try {
-        res.json(await apiProductos.popular(req.query.cant))
-    } catch (error) {
-        next(error)        
-    }
-})
+// router.post('/popular', async (req, res, next)=> {
+//     try {
+//         res.json(await apiProductos.popular(req.query.cant))
+//     } catch (error) {
+//         next(error)        
+//     }
+// })
 
 router.get('/productos-test', async (req, res, next)=> {
     try {

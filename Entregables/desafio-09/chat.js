@@ -1,26 +1,36 @@
-const { options } = require('./options/connectOptions')
-const knex = require('knex')(options.sqlite)
-const { normalizedChatpost, post } = require('./utils/schemaNormalizr')
-
+const { normalizedChatpost, denormalizedChatPost } = require('./utils/schemaNormalizr')
+const util = require('util')
+const fs = require('fs')
+const db = './db/chatMsg.json'
+// let chatMsg = require('./db/chatMsg')
 // createDb()
 
+function print(text = "", objeto) {
+    console.log(text, util.inspect(objeto, false, 12, true))
+}
 class Chat {
     constructor(table) {
         this.table = table
+        this.file = db
     }
     async getMsj() {
         try {
-            // console.log(JSON.parse(JSON.stringify(await knex.from(this.table).select('*'))));
-            // return JSON.parse(JSON.stringify(await knex.from(this.table).select('*')));;
-            return {normalizedChatpost, post}
+            return { normalizedChatpost }
         } catch (error) {
             console.log(error);
         }
     }
 
     async addMsj(newMsj) {
+        const denormalized = denormalizedChatPost(newMsj)
         try {
-            return await knex.from(this.table).insert(newMsj)
+            fs.writeFile(this.file, JSON.stringify(denormalized, "", 2), error => {
+                if (error) {
+                    console.log(error)
+                } else {
+                    console.log("Datos Guardados")
+                }
+            })
         } catch (error) {
             console.log(error);
         }
