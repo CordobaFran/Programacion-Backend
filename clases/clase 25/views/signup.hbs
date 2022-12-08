@@ -1,0 +1,32 @@
+<div class="container">
+    <h1 class="mt-5 mx-5 h3 text-left">Register</h1>
+    <form class="m-5" action="./signup" method="post">
+        <div class="mb-3 w-50">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" aria-describedby="userHelp" value="admin">
+            <div id="userHelp" class="form-text">Ingrese su nombre de usuario</div>
+        </div>
+        <div class="mb-3 w-50">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" aria-describedby="passHelp" value="admin" >
+            <div id="passHelp" class="form-text">Ingrese su una contraseña</div>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="admin" id="flexRadioDefault1" value="true">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Admin
+            </label>
+        </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="admin" id="flexRadioDefault2" value="false" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                User
+            </label>
+        </div>
+        <!-- <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> -->
+        <button type="submit" class=" mt-5 btn btn-primary">Signup</button>
+    </form>
+</div>
