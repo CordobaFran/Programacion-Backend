@@ -14,6 +14,7 @@ const routerLogin = require('./src/routes/login/login.routes')
 
 const { passport } = require('./src/middleware/passport.middleware')
 const { checkAuth } = require('./src/middleware/checkAuth.middleware.js')
+const { auth } = require('./src/middleware/JWTauth.middleware')
 
 require('dotenv').config()
 
@@ -60,6 +61,6 @@ app.use(passport.session())
 
 app.use('/api', routerProducts)
 app.use('/auth', routerLogin)
-app.use('/', checkAuth, mainProducts)
+app.use('/', auth, mainProducts)
 
 module.exports = app
