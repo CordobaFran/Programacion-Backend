@@ -1,5 +1,6 @@
-// const options = require('./options/connectOptions.js').options
+
 // const { authMiddleware } = require('./src/middleware/auth.middleware')
+const { options } = require('./options/options')
 
 const express = require('express')
 const app = express()
@@ -12,6 +13,8 @@ const handlebars = require('express-handlebars')
 const routerProducts = require('./src/routes/apiMock/apiMock.routes')
 const mainProducts = require('./src/routes/productos/main.routes.js')
 const routerLogin = require('./src/routes/login/login.routes')
+const routerInfo = require('./src/routes/info/info.routes')
+const randomRoutes = require('./src/routes/random/random.routes')
 
 const { passport } = require('./src/middleware/passport.middleware')
 const { checkAuth } = require('./src/middleware/checkAuth.middleware.js')
@@ -32,7 +35,7 @@ app.set('view engine', 'hbs');
 app.set('views', './views')
 
 app.use(session({
-    secret: process.env.SECRET,
+    secret: options.SECRETKEY_SESSION,
     cookie: {
         httpOnly: false,
         secure: false,
@@ -61,8 +64,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(cookieParser())
 
+app.use('/api', randomRoutes)
 app.use('/api', routerProducts)
 app.use('/auth', routerLogin)
+app.use('/', routerInfo)
 app.use('/', auth, mainProducts)
 
 module.exports = app

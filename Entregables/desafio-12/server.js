@@ -1,6 +1,8 @@
- const { httpServer, socketIo} = require('./socketio')
+const { options } = require('./options/options')
 
-const PORT = process.env.PORT || 4000
+const { httpServer, socketIo } = require('./socketio')
+
+const PORT = options.PORT
 // const { SocketAddress } = require('net')
 
 httpServer.listen(PORT, () => { console.log(`Server Online on Port ${PORT}`) })

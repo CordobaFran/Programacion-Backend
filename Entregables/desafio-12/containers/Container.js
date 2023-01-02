@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose')
-const { options } = require('../options/connectOptions')
+const { options } = require('../options/options')
 const { ProductsModel } = require("../models/products")
 
 // createDb()

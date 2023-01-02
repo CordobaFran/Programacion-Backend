@@ -1,9 +1,11 @@
 const { Router } = require('express')
+const router = Router()
+
 const passport = require('passport')
 const { users } = require('../../../db/users')
 const { generateToken } = require('../../middleware/JWTgenerate.middleware')
 const { createHash } = require('../../middleware/passport.middleware')
-const router = Router()
+
 const userContainer = require('../../../containers/UserContainer')
 const UserContainer = new userContainer()
 //------------------------------LOGIN------------------------------//

@@ -1,4 +1,4 @@
-
+const { options } = require('../../options/options')
 // const { serializeUser } = require('passport')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
@@ -18,11 +18,7 @@ const isValidPassword = (user, password) => {
     return bcrypt.compareSync(password, user.password)//pasword es el del formulario y user.password el traido de la nube
 }
 
-passport.use('github', new GithubStrategy({
-    clientID: "Iv1.0713c29598712969",
-    clientSecret: "289dd80990bb1fa2bfcf382554809b0900343005",
-    callbackURL: "http://localhost:8080/auth/githubcallback"
-}, (req, accessToken, refreshToken, profile, done) => {
+passport.use('github', new GithubStrategy(options.GITHUB_STRATEGY, (req, accessToken, refreshToken, profile, done) => {
     // console.log(profile._json);
     // console.log(accessToken);
 

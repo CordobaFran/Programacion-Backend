@@ -1,3 +1,5 @@
+const { options } = require('../../options/options')
+
 const jwt = require('jsonwebtoken')
 const { generateToken } = require('./JWTgenerate.middleware')
 
@@ -19,7 +21,7 @@ async function auth(req, res, next) {
         res.cookie('authorization', newTk)
     }
 
-    jwt.verify(token, process.env.PRIVATE_KEY, async (err, decoded) => {
+    jwt.verify(token, options.JWT_PRIVATE_KEY, async (err, decoded) => {
         if (err) {
             res.clearCookie('authorization')
             return res.status(403).json({
