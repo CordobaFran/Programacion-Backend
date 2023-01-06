@@ -1,0 +1,57 @@
+{
+  "id": "999",
+  "posts": [
+    {
+      "id": 1,
+      "author": {
+        "email": "francocordobafs@gmail.com",
+        "name": "Franco",
+        "lastname": "Cordoba",
+        "age": "30",
+        "alias": "Servidor",
+        "avatar": ""
+      },
+      "messages": [
+        {
+          "id": 2,
+          "author": {
+            "email": "crisferes@gmail.com",
+            "name": "Cristian",
+            "lastname": "Feres",
+            "age": "31",
+            "alias": "Cris",
+            "avatar": ""
+          },
+          "message": "Busco productos 2022",
+          "date": "29/11/2022, 03:04:52"
+        },
+        {
+          "id": 3,
+          "author": {
+            "email": "francocordobafs@gmail.com",
+            "name": "Franco",
+            "lastname": "Cordoba",
+            "age": "30",
+            "alias": "Servidor",
+            "avatar": ""
+          },
+          "message": "Que clase de productos busca?",
+          "date": "29/11/2022, 03:04:52"
+        },
+        {
+          "id": 4,
+          "author": {
+            "email": "crisferes@gmail.com",
+            "name": "Cristian",
+            "lastname": "Feres",
+            "age": "31",
+            "alias": "Cris",
+            "avatar": ""
+          },
+          "message": "Busco productos de limpieza",
+          "date": "29/11/2022, 03:04:52"
+        }
+      ]
+    }
+  ]
+}
