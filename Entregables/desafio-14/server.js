@@ -2,7 +2,7 @@ const { options } = require('./options/options')
 
 const { httpServer, socketIo } = require('./socketio')
 
-const logger = require('./log')
+const logger = require('./logger')
 
 const PORT = options.PORT
 
@@ -27,8 +27,8 @@ if (options.MODE == 'CLUSTER' && cluster.isPrimary) {
 
     try {
         httpServer.listen(PORT, () => {
-            logger.log('error',`Server Online on Port ${PORT}`)
-            logger.log('verbose', `Worker ${process.pid} started`);
+            logger.info(`Server Online on Port ${PORT}`)
+            logger.debug( `Worker ${process.pid} started`);
         })
     } catch (error) {
         console.log(error);

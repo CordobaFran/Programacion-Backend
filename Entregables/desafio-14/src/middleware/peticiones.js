@@ -1,4 +1,4 @@
-const logger = require("../../log")
+const logger = require("../../logger")
 
 function logUrlInfo(req, res, next) {
     logger.info(`URL: ${req.url}, METHOD: ${req.method}`)

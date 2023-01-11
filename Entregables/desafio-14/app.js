@@ -74,7 +74,7 @@ app.use('/auth', routerLogin)
 app.use('/',compression(), logUrlInfo ,routerInfo)
 app.use('/', auth, mainProducts)
 
-app.get('*', (req,res) => {
+app.use('/*', logUrlWarn, (req,res) => {
     res.send('<h1>Página no encontrada</h1>')
 })
 
