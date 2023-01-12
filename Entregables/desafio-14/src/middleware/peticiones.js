@@ -1,12 +1,12 @@
-const logger = require("../../logger")
+const {loggerConsole, loggerWarn} = require("../../logger")
 
 function logUrlInfo(req, res, next) {
-    logger.info(`URL: ${req.url}, METHOD: ${req.method}`)
+    loggerConsole.info(`URL: ${req.url}, METHOD: ${req.method}`)
     next()
 }
 
 function logUrlWarn(req, res, next) {
-    logger.warn(`URL: ${req.url}, METHOD: ${req.method}`)
+    loggerWarn.warn(`URL: ${req.url}, METHOD: ${req.method}`)
     next()
 }
 
