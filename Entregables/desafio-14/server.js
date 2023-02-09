@@ -7,6 +7,8 @@ const PORT = options.PORT
 const cluster = require('cluster')
 const numCPUs = require('os').cpus().length
 
+const compression = require('compression')
+
 if (options.MODE == 'CLUSTER' && cluster.isPrimary) {
 
     console.log(`Master ${process.pid} started`);
