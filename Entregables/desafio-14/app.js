@@ -20,6 +20,9 @@ const { passport } = require('./src/middleware/passport.middleware')
 const { checkAuth } = require('./src/middleware/checkAuth.middleware.js')
 const { auth } = require('./src/middleware/JWTauth.middleware')
 
+const compression = require('compression')
+const {logUrlInfo, logUrlWarn} = require('./src/middleware/peticiones')
+
 require('dotenv').config()
 
 app.engine('hbs',
@@ -67,7 +70,12 @@ app.use(cookieParser())
 app.use('/api', randomRoutes)
 app.use('/api', routerProducts)
 app.use('/auth', routerLogin)
-app.use('/', routerInfo)
+// app.use('/', routerInfo)
+app.use('/',compression(), logUrlInfo ,routerInfo)
 app.use('/', auth, mainProducts)
+
+app.get('*', logUrlWarn, (req,res) => {
+    res.status(404).render('error')
+})
 
 module.exports = app

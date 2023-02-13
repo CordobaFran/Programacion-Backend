@@ -2,6 +2,7 @@
 const mongoose = require('mongoose')
 const { options } = require('../options/options')
 const { ProductsModel } = require("../models/products")
+const { loggerError, loggerConsole } = require('../logger')
 
 // createDb()
 module.exports = class Container {
@@ -18,9 +19,9 @@ module.exports = class Container {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             })
-            console.log('Mongo db connected');
+            loggerConsole.info('Mongo db connected');
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -29,7 +30,7 @@ module.exports = class Container {
             let products = await this.Model.find()
             return products
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -38,18 +39,19 @@ module.exports = class Container {
             let products = await this.Model.find({ _id: id })
             return products
         } catch (error) {
-            console.log(error);
+            return { status: "Product Doesn't exists"}
+            loggerError.error(error);
         }
     }
 
     async addProduct(productAdded) {
-        console.log(productAdded);
+        loggerConsole.info(productAdded);
         try {
             const newProduct = new this.Model(productAdded)
             await newProduct.save()
             return { status: "product added" }
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -58,7 +60,7 @@ module.exports = class Container {
             await this.Model.updateOne({ _id: id }, { $set: params })
             return { status: "modified" }
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -67,7 +69,7 @@ module.exports = class Container {
             await this.Model.deleteOne({ _id: id })
             return { status: `Product ${id} deleted` }
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -75,7 +77,7 @@ module.exports = class Container {
         try {
             await this.Model.deleteMany({})
         } catch (error) {
-
+            loggerError.error(error)
         }
     }
 }

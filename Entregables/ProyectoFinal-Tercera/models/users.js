@@ -11,7 +11,8 @@ const productSchema = new Schema({
     name: { type: String, require: true, max: 100 },
     age: { type: Number, require: true, max: 3 },
     phoneNumber: { type: Number, require: true, max: 100 },
-    address: { type: String, require: true, max: 100 }
+    address: { type: String, require: true, max: 100 },
+    profilePicture: { type: String, require: true, max: 1000}
 })
 
 const UsersModel = model(productCollection, productSchema)

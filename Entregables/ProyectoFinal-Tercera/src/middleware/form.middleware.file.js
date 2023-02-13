@@ -13,6 +13,8 @@ let storage = multer.diskStorage({
     }
 })
 
+// let storage = multer.memoryStorage()
+
 const upload = multer({
     storage: storage
 })
@@ -20,14 +22,16 @@ const upload = multer({
 
 const file = (req, res, next) => {
     upload.single("file")
-    const file = req.file
-    if(!file){
-        const error = new Error('upload a file')
-        error.httpStatusCode = 400
-        return next(error)
-    }
-    // console.log(req);
-    res.send(file)
+    console.log(req.file);
+    // const file = req.file
+    // if(!file){
+    //     const error = new Error('upload a file')
+    //     error.httpStatusCode = 400
+    //     return next(error)
+    // }
+    // // console.log(req);
+    // res.send(file)
+    next()
 }
 
 module.exports = {

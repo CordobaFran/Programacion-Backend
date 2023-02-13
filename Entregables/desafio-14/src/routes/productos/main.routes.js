@@ -6,6 +6,7 @@ const Contenedor = require('../../../containers/Container')
 const productos = new Contenedor()
 
 const { users } = require('../../../db/users')
+const { logUrlWarn } = require('../../middleware/peticiones')
 
 router.get("/", async (req, res) => {
     const products = await productos.getAll()
@@ -19,20 +20,21 @@ router.get("/", async (req, res) => {
     // res.json( {products}) 
 })
 
-router.get("/:id", async (req, res) => {
+router.get("/product/:id", async (req, res) => {
     const id = req.params.id
     res.json(await productos.getById(id))
 })
 
-router.put("/:id", async (req, res) => {
+router.put("/product/:id", async (req, res) => {
     const id = req.params.id
     const productData = req.body
     res.json(await productos.editById(id, productData))
 })
 
-router.delete("/:id", async (req, res) => {
+router.delete("/product/:id", async (req, res) => {
     const id = req.params.id
     res.json(await productos.deleteById(id))
 })
+
 
 module.exports = router
