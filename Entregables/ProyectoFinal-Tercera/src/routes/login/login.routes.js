@@ -10,6 +10,7 @@ const userContainer = require('../../../containers/UserContainer')
 const UserContainer = new userContainer()
 
 const multer = require('multer')
+const nodeMailer = require('../../../nodemailer')
 
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -115,7 +116,9 @@ router.post("/register", upload.single('file'), async (req, res) => {
         profilePicture
     }
 
+    nodeMailer(newUser)
     UserContainer.createUser(newUser)
+
     // const access_token = generateToken(newUser)
     res.redirect('/auth/login')
     // res.json({ access_token })
