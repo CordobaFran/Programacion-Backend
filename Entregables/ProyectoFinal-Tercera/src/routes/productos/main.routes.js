@@ -12,7 +12,12 @@ router.get("/", async (req, res) => {
     let productExists = false
     // console.log(req.session);
     // const username = users.find(user => user.id === req.session.passport.user).username
-    const username = req.user.username
+    let username;
+    if (!req.user) {
+       username = "no definido"
+    } else {
+        username = req.user.username
+    }
     
     await products ? productExists = true : productExists = false
     res.render('main', { products, productExists, username })
