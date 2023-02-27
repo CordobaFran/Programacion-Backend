@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const { options } = require('../../desafio-09/options/connectOptions')
-const { UsersModel } = require("../models/users")
+const { UsersModel } = require("../src/models/users")
 const { isValidPassword } = require('../src/middleware/passport.middleware')
 
 // createDb()

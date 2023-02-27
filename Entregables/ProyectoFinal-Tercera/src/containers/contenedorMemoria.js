@@ -1,5 +1,5 @@
 
-export default class ContenedorArchivo {
+class ContenedorArchivo {
     constructor() {
         this.cartOrProducts = []
     }
@@ -60,3 +60,4 @@ export default class ContenedorArchivo {
     }
 }
 
+module.exports = ContenedorArchivo

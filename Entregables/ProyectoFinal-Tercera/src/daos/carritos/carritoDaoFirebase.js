@@ -1,7 +1,7 @@
-import ContenedorFirebase from '../../containers/contenedorFirebase.js'
-import admin from 'firebase-admin'
+const ContenedorFirebase  = require( '../../containers/contenedorFirebase.js')
+const admin  = require( 'firebase-admin')
 
-export default class CarritoDaoFirebase extends ContenedorFirebase {
+class CarritoDaoFirebase extends ContenedorFirebase {
     constructor() {
         super('carritos')
     }
@@ -59,3 +59,5 @@ export default class CarritoDaoFirebase extends ContenedorFirebase {
     }
 
 }
+
+module.exports = CarritoDaoFirebase

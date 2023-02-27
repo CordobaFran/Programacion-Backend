@@ -9,12 +9,16 @@ const io = new IOServer(httpServer)
 const Contenedor = require('./containers/Container')
 const productos = new Contenedor()
 
+const Carritos = require('./src/daos/carritosDao')
+const cart = new Carritos('carritos')
+
 const Chat = require('./chat')
 const msjs = new Chat("chat")
 
 io.on('connection', async socket => {
     const products = await productos.getAll()
     const messages = await msjs.getMsj()
+    const carts = await cart.getAll()
 
     console.log("usuario conectado");
     socket.emit("products-sv", products)
@@ -28,6 +32,12 @@ io.on('connection', async socket => {
         await msjs.addMsj(data)
         io.sockets.emit("messages-sv", await msjs.getMsj())
     })
+    socket.emit("carts", carts)
+    // socket.on("new-message", async (data) => {
+    //     await msjs.addMsj(data)
+    //     io.sockets.emit("messages-sv", await msjs.getMsj())
+    // })
+    
 })
 
 module.exports = {

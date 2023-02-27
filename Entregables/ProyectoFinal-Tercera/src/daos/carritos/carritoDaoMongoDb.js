@@ -1,7 +1,7 @@
-import ContenedorMongo from '../../containers/contenedorMongoDb.js'
-import mongoose from 'mongoose'
+const ContenedorMongo = require( '../../containers/contenedorMongoDb.js')
+const mongoose = require( 'mongoose')
 
-export default class CarritoDaoMongo extends ContenedorMongo {
+class CarritoDaoMongo extends ContenedorMongo {
     constructor() {
         super('carritos')
     }
@@ -44,3 +44,5 @@ export default class CarritoDaoMongo extends ContenedorMongo {
         }
     }
 }
+
+module.exports = CarritoDaoMongo

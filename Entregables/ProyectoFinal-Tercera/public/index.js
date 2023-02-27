@@ -57,6 +57,32 @@ socket.on("products-sv", data => {
     renderProducts(data)
 })
 
+//----Carritos----
+const renderCarts = (cartsData) => {
+
+    const html = cartsData.map((el)=>{
+        return (`
+        <tr>
+            <td class="px-5">
+                ${cartsData.indexOf(el)}
+            </td>
+            <td class="px-5">
+                <a href="./cart/${el._id}">${el._id}</a>
+            </td>
+        </tr>
+        `)
+    }).join(" ")
+    
+
+    if (document.getElementById('carts')){
+        document.getElementById('carts').innerHTML = html
+    }
+}
+
+socket.on("carts", data => {
+    renderCarts(data)
+})
+
 //----Chat----
 
 const sendMessage = () => {

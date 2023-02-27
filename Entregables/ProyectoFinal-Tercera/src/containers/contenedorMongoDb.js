@@ -1,9 +1,9 @@
-import mongoose from 'mongoose'
-import config from '../config.js'
-import { ProductsModel } from '../models/product.js'
-import { CartsModel } from '../models/carts.js'
+const mongoose = require( 'mongoose')
+const config = require( '../config.js')
+const { ProductsModel } = require( '../models/products')
+const { CartsModel } = require( '../models/carts')
 
-export default class Products {
+class Products {
     constructor(collection) {
         this.connect()
         this.Model
@@ -80,3 +80,4 @@ export default class Products {
 
 }
 
+module.exports = Products

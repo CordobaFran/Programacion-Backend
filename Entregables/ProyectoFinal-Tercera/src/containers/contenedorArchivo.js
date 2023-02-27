@@ -1,8 +1,8 @@
 
-import fs from "fs"
+const fs = require( "fs" )
 // const { readFile } = require('fs/promises')
 
-export default class ContenedorArchivo {
+class ContenedorArchivo {
     constructor(file) {
         this.file = file
 
@@ -110,3 +110,4 @@ export default class ContenedorArchivo {
     }
 }
 
+module.exports = ContenedorArchivo

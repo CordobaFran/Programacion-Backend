@@ -1,7 +1,7 @@
-import ContenedorArchivo from "../../containers/contenedorArchivo.js";
-import fs from 'fs'
+const ContenedorArchivo = require( "../../containers/contenedorArchivo.js");
+const fs = require( 'fs')
 
-export default class CarritosDaoArchivo extends ContenedorArchivo {
+class CarritosDaoArchivo extends ContenedorArchivo {
     constructor(){
         super("../db/cart.json")
     }
@@ -87,3 +87,5 @@ export default class CarritosDaoArchivo extends ContenedorArchivo {
 
     }
 }
+
+module.exports = CarritosDaoArchivo

@@ -1,8 +1,8 @@
-import config from "../config.js";
-import CarritoDaoFirebase from "./carritos/carritoDaoFirebase.js";
-import CarritoDaoMongoDb from "./carritos/carritoDaoMongoDb.js"
-import CarritoDaoArchivo from "./carritos/carritoDaoArchivo.js"
-import CarritoDaoMemoria from "./carritos/carritoDaoMemoria.js"
+const config = require("../config.js");
+const CarritoDaoFirebase = require("./carritos/carritoDaoFirebase.js");
+const CarritoDaoMongoDb = require("./carritos/carritoDaoMongoDb.js")
+const CarritoDaoArchivo = require("./carritos/carritoDaoArchivo.js")
+const CarritoDaoMemoria = require("./carritos/carritoDaoMemoria.js")
 
 let database = config.database
 let carritos
@@ -40,4 +40,4 @@ switch (database) {
         break;
 }
 
-export default carritos
+module.exports = carritos

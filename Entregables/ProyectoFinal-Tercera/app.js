@@ -69,9 +69,9 @@ app.use(cookieParser())
 app.use('/api', randomRoutes)
 app.use('/api', routerProducts)
 app.use('/auth', routerLogin)
-app.use('/cart', routerCart)
+app.use('/cart',auth, routerCart)
 app.use('/', routerInfo)
-// app.use('/', auth, mainProducts)
-app.use('/', mainProducts)
+app.use('/', auth, mainProducts)
+// app.use('/', mainProducts)
 
 module.exports = app

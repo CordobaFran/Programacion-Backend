@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose')
 const { options } = require('../options/options')
-const { ProductsModel } = require("../models/products")
+const { ProductsModel } = require("../src/models/products")
 
 // createDb()
 module.exports = class Container {

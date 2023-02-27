@@ -1,8 +1,8 @@
-import config from "../config.js";
-import ProductosDaoFirebase from "./productos/productosDaoFirebase.js";
-import ProductosDaoMongoDb from "./productos/productosDaoMongoDb.js"
-import ProductosDaoArchivo from "./productos/productosDaoArchivo.js"
-import ProductosDaoMemoria from "./productos/productosDaoMemoria.js"
+const config  = require( "../config.js");
+const ProductosDaoFirebase  = require( "./productos/productosDaoFirebase.js");
+const ProductosDaoMongoDb  = require( "./productos/productosDaoMongoDb.js")
+const ProductosDaoArchivo  = require( "./productos/productosDaoArchivo.js")
+const ProductosDaoMemoria  = require( "./productos/productosDaoMemoria.js")
 
 let database = config.database
 let productos
@@ -40,4 +40,4 @@ switch (database) {
         break;
 }
 
-export default productos
+module.exports = productos

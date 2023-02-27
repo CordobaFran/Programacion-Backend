@@ -1,5 +1,5 @@
-import admin from 'firebase-admin'
-import config from '../config.js';
+const admin = require('firebase-admin')
+const config  = require( '../config.js');
 
 admin.initializeApp({
   credential: admin.credential.cert(config.firebase)
@@ -7,7 +7,7 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-export default class ContainerFirebase {
+class ContainerFirebase {
   
   constructor(collection) {
     this.query = db.collection(collection)
@@ -76,3 +76,5 @@ export default class ContainerFirebase {
   }
 
 }
+
+module.exports = ContainerFirebase
