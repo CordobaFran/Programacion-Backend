@@ -3,6 +3,7 @@ const nodeMailerCart = require('../../../nodemailer-cartConfirm')
 const router = Router()
 
 const Carritos = require('../../daos/carritosDao')
+const { twilioSms, twilioWsap } = require('../../twilio')
 const cart = new Carritos('carritos')
 
 router.get('/', async (req, res) => {
@@ -27,24 +28,25 @@ router.get('/:id', async (req, res) => {
     // res.json(cartById)
 })
 
-router.post('/:id', async (req, res)=>{
+router.post('/:id', async (req, res) => {
 
-    const {username, email} = req.user
+    const { username, email } = req.user
     const id = req.params.id
     const cartById = await cart.getById(id)
-    console.log(username, email)
 
     const products = cartById[0].productos
 
     const sellData = {
         username,
         email,
-        products     
+        products
     }
 
     nodeMailerCart(sellData)
+    twilioWsap(sellData)
+    twilioSms(sellData)
 
-    res.json({msj:"checkout Ok"})
+    res.json({ msj: "checkout Ok" })
 })
 
 module.exports = router

@@ -43,7 +43,7 @@ async function nodeMailerCart(sellData) {
 
     try {
         const info = await transporter.sendMail(mailOptions)
-        console.log(info)
+        info
     } catch (error) {
         console.log(error)
     }
