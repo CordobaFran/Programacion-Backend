@@ -1,5 +1,6 @@
 
 const fs = require( "fs" )
+const { loggerConsole, loggerError, loggerWarn } = require('../../logger')
 // const { readFile } = require('fs/promises')
 
 class ContenedorArchivo {
@@ -27,14 +28,14 @@ class ContenedorArchivo {
         try {
             fs.writeFile(this.file, JSON.stringify(newProduct, "", 2), 'utf-8', (err) => {
                 if (err) {
-                    console.log(err);
+                    loggerError.error(err);
                 } else {
-                    console.log('archivo editado');
+                    loggerWarn.warn('archivo editado');
                 }
             })
 
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -67,14 +68,14 @@ class ContenedorArchivo {
             try {
                 fs.writeFile(this.file, JSON.stringify(products, "", 2), 'utf-8', (err) => {
                     if (err) {
-                        console.log(err);
+                        loggerError.error(err);
                     } else {
-                        console.log('archivo editado');
+                        loggerWarn.warn('archivo editado');
                     }
                 })
 
             } catch (error) {
-                console.log(error);
+                loggerError.error(error);
             }
 
             return { msj: "edited" }
@@ -94,14 +95,14 @@ class ContenedorArchivo {
             try {
                 fs.writeFile(this.file, JSON.stringify(products, "", 2), 'utf-8', (err) => {
                     if (err) {
-                        console.log(err);
+                        loggerError.error(err);
                     } else {
-                        console.log('dato eliminado');
+                        loggerWarn.warn('dato eliminado');
                     }
                 })
 
             } catch (error) {
-                console.log(error);
+                loggerError.error(error);
             }
 
             return { msj: "deleted" }

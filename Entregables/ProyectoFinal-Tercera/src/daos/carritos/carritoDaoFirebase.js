@@ -1,5 +1,6 @@
 const ContenedorFirebase  = require( '../../containers/contenedorFirebase.js')
 const admin  = require( 'firebase-admin')
+const { loggerWarn, loggerError } = require('../../../logger.js')
 
 class CarritoDaoFirebase extends ContenedorFirebase {
     constructor() {
@@ -10,7 +11,6 @@ class CarritoDaoFirebase extends ContenedorFirebase {
         const productsOfCart = await this.getProductsFromCart(id)
 
         try {
-            // console.log("hola", productsOfCart[0] );
 
             let lastId
             if (productsOfCart.length && productsOfCart.length > 0) {
@@ -21,12 +21,11 @@ class CarritoDaoFirebase extends ContenedorFirebase {
 
             const doc = this.query.doc(id)
             await doc.update({ productos: admin.firestore.FieldValue.arrayUnion({id: lastId, ...product}) })
-            console.log(`documento actualizado`, product);
-            // console.log(await cart.length);
+            loggerWarn.warn(`documento actualizado`, product);
             return { status: "modified" }
 
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -35,11 +34,10 @@ class CarritoDaoFirebase extends ContenedorFirebase {
             const queryDoc = this.query.doc(id)
             const doc = await queryDoc.get()
             const document = await doc.data()
-            console.log(document.productos);
             return document.productos
 
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -48,12 +46,11 @@ class CarritoDaoFirebase extends ContenedorFirebase {
         try {
             const doc = this.query.doc(id)
                 await doc.update({ productos: admin.firestore.FieldValue.arrayRemove(productsId) })
-                console.log(`documento actualizado`);
-                // console.log(await cart.length);
+                loggerWarn.warn(`documento actualizado`);
                 return { status: "modified" }
             
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
 
     }

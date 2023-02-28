@@ -6,11 +6,11 @@ const { users } = require('../../../db/users')
 const { generateToken } = require('../../middleware/JWTgenerate.middleware')
 const { createHash } = require('../../middleware/passport.middleware')
 
-const userContainer = require('../../../containers/UserContainer')
+const userContainer = require('../../containers/UserContainer')
 const UserContainer = new userContainer()
 
 const multer = require('multer')
-const nodeMailer = require('../../../nodemailer')
+const nodeMailer = require('../../nodemailer')
 
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {

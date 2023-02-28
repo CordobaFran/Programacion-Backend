@@ -1,5 +1,6 @@
 const ContenedorArchivo = require( "../../containers/contenedorArchivo.js");
-const fs = require( 'fs')
+const fs = require( 'fs');
+const { loggerError, loggerWarn } = require("../../../logger.js");
 
 class CarritosDaoArchivo extends ContenedorArchivo {
     constructor(){
@@ -21,13 +22,13 @@ class CarritosDaoArchivo extends ContenedorArchivo {
         try {
             fs.writeFile(this.file, JSON.stringify(this.cartOrProducts,"", 2), 'utf-8', (err) => {
               if (err) {
-                console.log(err);
+                loggerError.error(err);
               } else {
-                console.log('productos agregados');
+                loggerWarn.warn('productos agregados');
               }
             })
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -44,7 +45,7 @@ class CarritosDaoArchivo extends ContenedorArchivo {
                 return {msj: "Carrito no encontrado"}
             }
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -71,14 +72,14 @@ class CarritosDaoArchivo extends ContenedorArchivo {
             try {
                 fs.writeFile(this.file, JSON.stringify(this.cartOrProducts, "", 2), 'utf-8', (err) => {
                     if (err) {
-                        console.log(err);
+                        loggerError.error(err);
                     } else {
-                        console.log('dato eliminado');
+                        loggerWarn.warn('dato eliminado');
                     }
                 })
     
             } catch (error) {
-                console.log(error);
+                loggerError.error(error);
             }
             return {msj:"products deleted"}
         } else {

@@ -1,7 +1,8 @@
-const Container = require('../containers/Container')
+// const Container = require('../containers/Container')
+const productos = require('../src/daos/productosDao')
 const { generarProducto } = require('../utils/generadorDeProductos')
 
-module.exports = class ApiProductosMock extends Container {
+module.exports = class ApiProductosMock extends productos {
     constructor (){
         super()
     }
@@ -10,7 +11,7 @@ module.exports = class ApiProductosMock extends Container {
         const nuevos = []
         for (let i = 0; i < cant ; i++){
             const nuevoProducto = generarProducto()
-            const guardado = this.addProduct(nuevoProducto)
+            const guardado = this.create(nuevoProducto)
             nuevos.push(await guardado)
         }
         return nuevos

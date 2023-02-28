@@ -7,7 +7,7 @@ let storage = multer.diskStorage({
         cb(null, 'uploads')
     },
     filename: (req, file, cb) => {
-        console.log(file); 
+        // console.log(file); 
         // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
         // cb(null, file.fieldname + '-' + uniqueSuffix)
     }
@@ -22,7 +22,7 @@ const upload = multer({
 
 const file = (req, res, next) => {
     upload.single("file")
-    console.log(req.file);
+    // console.log(req.file);
     // const file = req.file
     // if(!file){
     //     const error = new Error('upload a file')

@@ -1,6 +1,6 @@
-import ContenedorMemoria from "../../containers/contenedorMemoria.js";
+const ContenedorMemoria  = require(  "../../containers/contenedorMemoria.js")
 
-export default class ProductosDaoMemoria extends ContenedorMemoria {
+module.exports = class ProductosDaoMemoria extends ContenedorMemoria {
     constructor(){
         super()
     }

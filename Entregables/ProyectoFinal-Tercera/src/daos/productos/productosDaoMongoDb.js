@@ -1,7 +1,7 @@
-import ContenedorMongoDb from '../../containers/contenedorMongoDb.js'
+const ContenedorMongoDb = require('../../containers/contenedorMongoDb.js')
 
-export default class ProductosDaoMongoDb extends ContenedorMongoDb {
-    constructor(){
+module.exports = class ProductosDaoMongoDb extends ContenedorMongoDb {
+    constructor() {
         super('productos')
     }
 }

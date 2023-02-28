@@ -6,13 +6,14 @@ const { Server: IOServer } = require('socket.io')
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 
-const Contenedor = require('./containers/Container')
+const Contenedor = require('./src/daos/productosDao')
 const productos = new Contenedor()
 
 const Carritos = require('./src/daos/carritosDao')
 const cart = new Carritos('carritos')
 
 const Chat = require('./chat')
+const { loggerConsole } = require('./logger')
 const msjs = new Chat("chat")
 
 io.on('connection', async socket => {
@@ -20,10 +21,10 @@ io.on('connection', async socket => {
     const messages = await msjs.getMsj()
     const carts = await cart.getAll()
 
-    console.log("usuario conectado");
+    loggerConsole.info("usuario conectado");
     socket.emit("products-sv", products)
     socket.on('add-product', async (data) => {
-        await productos.addProduct(data)
+        await productos.create(data)
         io.sockets.emit('products-sv', await productos.getAll())
     }
     )

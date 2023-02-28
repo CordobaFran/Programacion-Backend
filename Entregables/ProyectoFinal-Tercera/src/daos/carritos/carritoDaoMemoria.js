@@ -1,3 +1,4 @@
+const { loggerError, loggerWarn } = require("../../../logger.js")
 const ContenedorMemoria = require( "../../containers/contenedorMemoria.js")
 
 class CarritoDaoMemoria extends ContenedorMemoria {
@@ -17,7 +18,7 @@ class CarritoDaoMemoria extends ContenedorMemoria {
             return {msj: "product added"}
         } else {
             cart.productos = [{id: 1, ...product}]
-            console.log("product added");
+            loggerWarn.warn("product added");
             return {msj: "product added"}
         }
     }
@@ -35,7 +36,7 @@ class CarritoDaoMemoria extends ContenedorMemoria {
                 return {msj: "Carrito no encontrado"}
             }
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 

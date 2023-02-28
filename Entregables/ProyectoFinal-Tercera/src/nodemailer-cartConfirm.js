@@ -1,4 +1,5 @@
-const { createTransport } = require("nodemailer")
+const { createTransport } = require("nodemailer");
+const { loggerError } = require("../logger");
 
 const DEST_MAIL = 'francocordobafs@gmail.com'
 
@@ -45,7 +46,7 @@ async function nodeMailerCart(sellData) {
         const info = await transporter.sendMail(mailOptions)
         info
     } catch (error) {
-        console.log(error)
+        loggerError.error(error)
     }
 }
 

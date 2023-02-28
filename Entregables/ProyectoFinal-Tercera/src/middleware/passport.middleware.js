@@ -6,6 +6,7 @@ const GithubStrategy = require('passport-github2').Strategy
 const bcrypt = require('bcrypt')
 
 const { users } = require('../../db/users')
+const { loggerWarn } = require('../../logger')
 
 const createHash = (password) => {
     return bcrypt.hashSync(
@@ -41,7 +42,7 @@ passport.use('login', new LocalStrategy(
         let user = users.find(user => user.username === username)
         // console.log(users);
         if (!user) {
-            console.log(`User Not Found with username ${username}`);
+            loggerWarn.warn(`User Not Found with username ${username}`);
             return done(null, false)
         }
 
@@ -55,9 +56,9 @@ passport.use('register', new LocalStrategy({
     (req, username, password, done) => {
 
         let user = users.find(user => user.username === username)
-        console.log(user);
+        // console.log(user);
         if (user) {
-            console.log(`User ${username} already exists`);
+            loggerWarn.warn(`User ${username} already exists`);
             return done(null, false, { message: 'user already exists' })
         }
 

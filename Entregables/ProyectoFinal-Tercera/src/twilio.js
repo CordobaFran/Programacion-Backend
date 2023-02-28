@@ -1,4 +1,5 @@
 const twilio = require('twilio')
+const { loggerError } = require('../logger')
 const options = require('../options/options')
 
 
@@ -22,7 +23,7 @@ async function twilioSms(sellData) {
 
 
         } catch (error) {
-            console.log(error)
+            loggerError.error(error)
         }
     }
 }
@@ -55,7 +56,7 @@ async function twilioWsap(sellData) {
             })
 
         } catch (error) {
-            console.log(error)
+            loggerError.error(error)
         }
     }
 

@@ -1,11 +1,15 @@
 const mongoose = require( 'mongoose')
 const config = require( '../config.js')
+const { loggerConsole, loggerError, loggerWarn } = require('../../logger')
+
 const { ProductsModel } = require( '../models/products')
 const { CartsModel } = require( '../models/carts')
 
 class Products {
     constructor(collection) {
-        this.connect()
+        if (mongoose.connection.readyState === 0) {
+            return this.connect()
+        }
         this.Model
 
     if (collection === 'carritos') {
@@ -21,9 +25,9 @@ class Products {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             })
-            console.log('Mongo db connected');
+            loggerConsole.info('Mongo db connected');
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
     //Create document
@@ -31,20 +35,19 @@ class Products {
         try {
             const newProduct = new this.Model(product)
             await newProduct.save()
-            console.log('product added');
+            loggerWarn.warn('product added');
             return { status: "product added" }
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
     //Read All
     async getAll() {
         try {
             let products = await this.Model.find({})
-            // console.log(products);
             return products
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
     //Read by Id
@@ -53,27 +56,35 @@ class Products {
             let products = await this.Model.find({ _id: id })
             return products
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
     //Update Product
     async update(id, params) {
         try {
             let products = await this.Model.updateOne({ _id: id }, { $set: params })
-            console.log('Edited', products);
+            loggerWarn.warn('Edited', products);
             return { status: "modified" }
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
     //Delete Product
     async delete(id) {
         try {
             let products = await this.Model.deleteOne({ _id: id })
-            console.log('Deleted', products);
+            loggerWarn.warn('Deleted', products);
             return { status: `Product ${id} deleted`}
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
+        }
+    }
+
+    async deleteall() {
+        try {
+            await this.Model.deleteMany({})
+        } catch (error) {
+            loggerError.error(error);
         }
     }
 

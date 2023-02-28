@@ -1,5 +1,6 @@
 const admin = require('firebase-admin')
-const config  = require( '../config.js');
+const config  = require( '../config.js')
+const { loggerConsole, loggerError, loggerWarn } = require('../../logger')
 
 admin.initializeApp({
   credential: admin.credential.cert(config.firebase)
@@ -18,10 +19,10 @@ class ContainerFirebase {
     try {
       const doc = this.query.doc()
       await doc.create(product)
-      console.log("added");
+      loggerWarn.warn("added");
       return { status: "added" }
     } catch (error) {
-      console.log(error);
+      loggerError.error(error);
     }
   }
   //Read All
@@ -31,10 +32,10 @@ class ContainerFirebase {
       let docs = queryDocs.docs.map(documents => (
         { id: documents.id, ...documents.data() }
       ))
-      console.log(docs);
+      loggerWarn.warn(docs);
       return docs
     } catch (error) {
-      console.log(error);
+      loggerError.error(error);
     }
   }
   //Read by ID
@@ -43,11 +44,10 @@ class ContainerFirebase {
       const queryDoc = this.query.doc(id)
       const doc = await queryDoc.get()
       const document = doc.data()
-      console.log(document);
       return document
 
     } catch (error) {
-      console.log(error);
+      loggerError.error(error);
     }
   }
   //Update Docs
@@ -55,11 +55,11 @@ class ContainerFirebase {
     try {
       const doc = this.query.doc(id)
       await doc.update(data)
-      console.log(`documento actualizado`, data);
+      loggerWarn.warn(`documento actualizado`, data);
       return { status: "modified" }
 
     } catch (error) {
-      console.log(error);
+      loggerError.error(error);
     }
   }
   //Update Docs
@@ -67,11 +67,11 @@ class ContainerFirebase {
     try {
       const doc = this.query.doc(id)
       await doc.delete()
-      console.log(`documento eliminado`);
+      loggerWarn.warn(`documento eliminado`);
       return { status: `${id} deleted`}
 
     } catch (error) {
-      console.log(error);
+      loggerError.error(error);
     }
   }
 

@@ -1,4 +1,5 @@
-const { createTransport } = require("nodemailer")
+const { createTransport } = require("nodemailer");
+const { loggerError } = require("../logger");
 
 const DEST_MAIL = 'francocordobafs@gmail.com'
 
@@ -35,10 +36,9 @@ const {username, email, name, age, phoneNumber, address} = NewuserData
     }
 
     try {
-        const info = await transporter.sendMail(mailOptions)
-        console.log(info)
+        await transporter.sendMail(mailOptions)
     } catch (error) {
-        console.log(error)
+        loggerError.error(error)
     }
 }
 

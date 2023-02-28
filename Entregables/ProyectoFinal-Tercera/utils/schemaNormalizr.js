@@ -5,10 +5,11 @@ const { schema, normalize, denormalize } = normalizr
 const util = require('util')
 
 const fs = require('fs')
+const { loggerConsole } = require('../logger')
 const chatMsjsJson = './db/chatMsg.json'
 
 function print(text = "", objeto) {
-    console.log(text, util.inspect(objeto, false, 12, true))
+    loggerConsole.Info(text, util.inspect(objeto, false, 12, true))
 }
 
 const user = new schema.Entity('users', {}, { idAttribute: "email" })

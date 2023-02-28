@@ -2,7 +2,7 @@ const { Router } = require('express')
 const passport = require('passport')
 const router = Router()
 
-const Contenedor = require('../../../containers/Container')
+const Contenedor = require('../../daos/productosDao')
 const productos = new Contenedor()
 
 const { users } = require('../../../db/users')
@@ -32,12 +32,12 @@ router.get("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
     const id = req.params.id
     const productData = req.body
-    res.json(await productos.editById(id, productData))
+    res.json(await productos.update(id, productData))
 })
 
 router.delete("/:id", async (req, res) => {
     const id = req.params.id
-    res.json(await productos.deleteById(id))
+    res.json(await productos.delete(id))
 })
 
 module.exports = router

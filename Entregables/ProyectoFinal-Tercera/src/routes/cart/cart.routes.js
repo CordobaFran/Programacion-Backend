@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const nodeMailerCart = require('../../../nodemailer-cartConfirm')
+const nodeMailerCart = require('../../nodemailer-cartConfirm')
 const router = Router()
 
 const Carritos = require('../../daos/carritosDao')

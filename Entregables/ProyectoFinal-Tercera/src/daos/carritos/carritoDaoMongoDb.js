@@ -1,5 +1,6 @@
-const ContenedorMongo = require( '../../containers/contenedorMongoDb.js')
-const mongoose = require( 'mongoose')
+const ContenedorMongo = require('../../containers/contenedorMongoDb.js')
+const mongoose = require('mongoose')
+const { loggerError } = require('../../../logger.js')
 
 class CarritoDaoMongo extends ContenedorMongo {
     constructor() {
@@ -26,7 +27,7 @@ class CarritoDaoMongo extends ContenedorMongo {
             let cart = await this.Model.findById(id)
             return cart.productos
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -39,7 +40,7 @@ class CarritoDaoMongo extends ContenedorMongo {
             cart.save()
             return { msj: "products deleted" }
         } catch (error) {
-            console.log(error)
+            loggerError.error(error)
             return { msj: "product not found" }
         }
     }
