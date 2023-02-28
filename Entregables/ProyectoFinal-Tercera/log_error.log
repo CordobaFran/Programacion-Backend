@@ -1,1 +1,22 @@
 ( 2023-02-28 03:19:28 ) error : Error con codigo: 1
+( 2023-02-28 05:27:34 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-02-28 05:27:34 ) error : this.Model is not a constructor
+( 2023-02-28 05:27:34 ) error : this.Model is not a constructor
+( 2023-02-28 05:27:34 ) error : this.Model is not a constructor
+( 2023-02-28 05:27:34 ) error : this.Model is not a constructor
+( 2023-02-28 05:27:34 ) error : this.Model is not a constructor
+( 2023-02-28 05:27:34 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-02-28 05:28:33 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-02-28 05:28:33 ) error : this.Model is not a constructor
+( 2023-02-28 05:28:33 ) error : this.Model is not a constructor
+( 2023-02-28 05:28:33 ) error : this.Model is not a constructor
+( 2023-02-28 05:28:33 ) error : this.Model is not a constructor
+( 2023-02-28 05:28:33 ) error : this.Model is not a constructor
+( 2023-02-28 05:28:33 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-02-28 05:28:35 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-02-28 05:28:35 ) error : this.Model is not a constructor
+( 2023-02-28 05:28:35 ) error : this.Model is not a constructor
+( 2023-02-28 05:28:35 ) error : this.Model is not a constructor
+( 2023-02-28 05:28:35 ) error : this.Model is not a constructor
+( 2023-02-28 05:28:35 ) error : this.Model is not a constructor
+( 2023-02-28 05:28:35 ) error : Cannot read properties of undefined (reading 'find')

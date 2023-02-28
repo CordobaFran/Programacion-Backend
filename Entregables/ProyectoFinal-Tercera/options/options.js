@@ -14,8 +14,8 @@ require('dotenv').config()
 
 const options = {
     // PORT: args.port,
-    PORT: args._[0],
-    MODE: args._[1],
+    PORT: args._[0] || process.env.PORT,
+    MODE: args._[1] || process.env.MODE,
     SECRETKEY_SESSION: process.env.SECRETKEY_SESSION,
     JWT_PRIVATE_KEY: process.env.JWT_PRIVATE_KEY,
     GITHUB_STRATEGY: {

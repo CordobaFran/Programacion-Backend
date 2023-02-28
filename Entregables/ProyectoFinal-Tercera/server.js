@@ -27,6 +27,7 @@ if (options.MODE == 'CLUSTER' && cluster.isPrimary) {
         httpServer.listen(PORT, () => {
             loggerConsole.info(`Server Online on Port ${PORT}`)
             loggerConsole.debug(`Worker ${process.pid} started`);
+            options.MODE == 'CLUSTER' ? loggerConsole.info("Mode: Cluster") : loggerConsole.info("Mode: Fork")
         })
     } catch (error) {
         loggerError.error(error);
