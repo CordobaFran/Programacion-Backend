@@ -1,32 +1,32 @@
 # ProyectoFinal - Tercero
 
-## Lista de comandos utilizados:
+## Lista de comandos utilizados en local :
 
 ```
 nodemon server 8081 FORK
 nodemon server 8082 CLUSTER
 
-forever start server.js 8081 FORK
-forever start server.js 8082 CLUSTER
-forever list
-
-pm2 start server.js --name='Server2' --  -- 8082 FORK --watch -f
-pm2 start server.js --name='Server1' -- -i 4 -- 8083 CLUSTER --watch
-pm2 list
-
 ```
 
-## NGINX
+# Rutas
 
-```
+[Home](https://ecomcerce-32125.up.railway.app/)
 
-node server 8081 CLUSTER
+[Login](https://ecomcerce-32125.up.railway.app/auth/login)
 
-node server 8082 CLUSTER
-node server 8083 CLUSTER
-node server 8084 CLUSTER
-node server 8085 CLUSTER
-```
-* **El archivo de configuración de NGINX se encuentra en la carpeta raiz**
+[Register](https://ecomcerce-32125.up.railway.app/auth/register)
+
+[Cart List](https://ecomcerce-32125.up.railway.app/cart)
+
+
+#
+
+# Resultados de comparación fork vs. cluster con Artillery
+
+* ## **Fork**
+![result_fork](artillery_fork.png)
+
+* ## **Cluster**
+![result_fork](artillery_cluster.png)
 
 

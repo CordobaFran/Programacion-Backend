@@ -12,11 +12,13 @@ const numCPUs = require('os').cpus().length
 if (options.MODE == 'CLUSTER' && cluster.isPrimary) {
 
     loggerConsole.info(`Master ${process.pid} started`);
+    
     for (let i = 0; i < numCPUs / 4; i++) {
         cluster.fork()
     }
     cluster.on('exit', (worker) => {
         loggerConsole.info(`Worker ${worker.process.pid} died`);
+        cluster.fork()
     })
 } else {
     process.on('exit', code => {
