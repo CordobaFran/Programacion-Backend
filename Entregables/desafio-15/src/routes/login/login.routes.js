@@ -6,8 +6,27 @@ const { users } = require('../../../db/users')
 const { generateToken } = require('../../middleware/JWTgenerate.middleware')
 const { createHash } = require('../../middleware/passport.middleware')
 
-const userContainer = require('../../../containers/UserContainer')
+const userContainer = require('../../containers/UserContainer')
 const UserContainer = new userContainer()
+
+const multer = require('multer')
+const nodeMailer = require('../../nodemailer')
+
+let storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/profiles/pictures')
+    },
+    filename: (req, file, cb) => {
+        // console.log(file); 
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        cb(null, file.fieldname + '-' + uniqueSuffix + '.jpg')
+    }
+})
+
+const upload = multer({
+    storage: storage
+})
+
 //------------------------------LOGIN------------------------------//
 
 router.get("/login", async (req, res) => {
@@ -47,10 +66,10 @@ router.get('/github', passport.authenticate('github', {
 router.get('/githubcallback', passport.authenticate('github', {
     failureRedirect: '/auth/login'
 }),
-function(req, res) {
-    const access_token = generateToken(req.user)
-    res.status(201).cookie("authorization", access_token).redirect('/')
-})
+    function (req, res) {
+        const access_token = generateToken(req.user)
+        res.status(201).cookie("authorization", access_token).redirect('/')
+    })
 
 //------------------------------REGISTER------------------------------//
 
@@ -58,8 +77,17 @@ router.get("/register", async (req, res) => {
     res.render('register')
 })
 
-router.post("/register", async (req, res) => {
-    const { username, password, email, admin } = req.body
+router.post("/register", upload.single('file'), async (req, res) => {
+
+    const { username, password, email, admin, name, age, phoneNumber, address, profileUrl } = req.body
+    
+    if (!req.file) {
+        profilePicture = profileUrl
+    } else {
+        let filePath = req.file.path
+        let publicFilePath = filePath.substring(6)
+        profilePicture = publicFilePath
+    }
 
     const userExists = await UserContainer.findUserAndEmail(username, email)
 
@@ -75,17 +103,23 @@ router.post("/register", async (req, res) => {
         return res.send(error) 
         // res.end()
     }
-    
+
     const newUser = {
         username,
         email,
         password: createHash(password),
-        admin
+        admin,
+        name,
+        age,
+        phoneNumber,
+        address,
+        profilePicture
     }
 
+    nodeMailer(newUser)
     UserContainer.createUser(newUser)
 
-    const access_token = generateToken(newUser)
+    // const access_token = generateToken(newUser)
     res.redirect('/auth/login')
     // res.json({ access_token })
 })

@@ -1,4 +1,5 @@
 const { normalizedChatpost, denormalizedChatPost } = require('./utils/schemaNormalizr')
+const { loggerConsole, loggerError, loggerWarn } = require('./logger')
 const util = require('util')
 const fs = require('fs')
 const db = './db/chatMsg.json'
@@ -6,7 +7,7 @@ const db = './db/chatMsg.json'
 // createDb()
 
 function print(text = "", objeto) {
-    console.log(text, util.inspect(objeto, false, 12, true))
+    loggerConsole.info(text, util.inspect(objeto, false, 12, true))
 }
 class Chat {
     constructor(table) {
@@ -17,7 +18,7 @@ class Chat {
         try {
             return { normalizedChatpost }
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -26,13 +27,13 @@ class Chat {
         try {
             fs.writeFile(this.file, JSON.stringify(denormalized, "", 2), error => {
                 if (error) {
-                    console.log(error)
+                    loggerError.error(error)
                 } else {
-                    console.log("Datos Guardados")
+                    loggerWarn.warn("Datos Guardados")
                 }
             })
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 }

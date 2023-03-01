@@ -1,6 +1,5 @@
     function random(qty){
         let numbersArray = {}
-        console.log(qty);
         for (let i = 0; i < qty; i++) {
             let randomNumber = parseInt(Math.ceil(Math.random() * 1000))
             

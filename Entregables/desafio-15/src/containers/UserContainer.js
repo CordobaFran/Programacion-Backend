@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
-const { options } = require('../../desafio-09/options/connectOptions')
+const { options } = require('../../options/options')
 const { UsersModel } = require("../models/users")
-const { isValidPassword } = require('../src/middleware/passport.middleware')
+const { isValidPassword } = require('../middleware/passport.middleware')
+const { loggerError, loggerConsole } = require('../../logger')
 
 // createDb()
 module.exports = class Container {
@@ -18,20 +19,19 @@ module.exports = class Container {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             })
-            console.log('Mongo db User connected');
+            loggerConsole.info('Mongo db User connected');
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
     async createUser(userAdded) {
-        // console.log(userAdded);
         try {
             const newUser = new this.Model(userAdded)
             await newUser.save()
             return { status: "User added" }
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -46,7 +46,7 @@ module.exports = class Container {
                 }
             )
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 
@@ -59,7 +59,7 @@ module.exports = class Container {
             }
 
         } catch (error) {
-            console.log(error);
+            loggerError.error(error);
         }
     }
 }

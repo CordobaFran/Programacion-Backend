@@ -15,6 +15,9 @@ const mainProducts = require('./src/routes/productos/main.routes.js')
 const routerLogin = require('./src/routes/login/login.routes')
 const routerInfo = require('./src/routes/info/info.routes')
 const randomRoutes = require('./src/routes/random/random.routes')
+const routerCart = require('./src/routes/cart/cart.routes')
+const apiMockProducts = require('./src/routes/apiMock/apiMock.routes')
+
 
 const { passport } = require('./src/middleware/passport.middleware')
 const { checkAuth } = require('./src/middleware/checkAuth.middleware.js')
@@ -66,8 +69,11 @@ app.use(cookieParser())
 
 app.use('/api', randomRoutes)
 app.use('/api', routerProducts)
+app.use('/api', apiMockProducts)
 app.use('/auth', routerLogin)
+app.use('/cart',auth, routerCart)
 app.use('/', routerInfo)
 app.use('/', auth, mainProducts)
+// app.use('/', mainProducts)
 
 module.exports = app
