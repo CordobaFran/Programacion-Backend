@@ -7,9 +7,9 @@ const { CartsModel } = require( '../models/carts')
 
 class Products {
     constructor(collection) {
-        if (mongoose.connection.readyState === 0) {
-            return this.connect()
-        }
+        mongoose.connection.once("disconnected", ()=>{
+            this.connect()
+        })
         this.Model
 
     if (collection === 'carritos') {

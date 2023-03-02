@@ -3,13 +3,13 @@ const productos = require('../src/daos/productosDao')
 const { generarProducto } = require('../utils/generadorDeProductos')
 
 module.exports = class ApiProductosMock extends productos {
-    constructor (){
+    constructor() {
         super()
     }
 
-    async popular(cant=5){
+    async popular(cant = 5) {
         const nuevos = []
-        for (let i = 0; i < cant ; i++){
+        for (let i = 0; i < cant; i++) {
             const nuevoProducto = generarProducto()
             const guardado = this.create(nuevoProducto)
             nuevos.push(await guardado)

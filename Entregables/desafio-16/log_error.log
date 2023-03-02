@@ -20,3 +20,163 @@
 ( 2023-02-28 05:28:35 ) error : this.Model is not a constructor
 ( 2023-02-28 05:28:35 ) error : this.Model is not a constructor
 ( 2023-02-28 05:28:35 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-01 21:41:56 ) error : Cast to ObjectId failed for value "productos-test" (type string) at path "_id" for model "products"
+( 2023-03-01 21:42:13 ) error : Cast to ObjectId failed for value "productos-test" (type string) at path "_id" for model "products"
+( 2023-03-01 21:42:23 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-01 21:42:23 ) error : this.Model is not a constructor
+( 2023-03-01 21:42:23 ) error : this.Model is not a constructor
+( 2023-03-01 21:42:23 ) error : this.Model is not a constructor
+( 2023-03-01 21:42:23 ) error : this.Model is not a constructor
+( 2023-03-01 21:42:23 ) error : this.Model is not a constructor
+( 2023-03-01 21:42:23 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:18:12 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:18:12 ) error : this.Model is not a constructor
+( 2023-03-02 01:18:12 ) error : this.Model is not a constructor
+( 2023-03-02 01:18:12 ) error : this.Model is not a constructor
+( 2023-03-02 01:18:12 ) error : this.Model is not a constructor
+( 2023-03-02 01:18:12 ) error : this.Model is not a constructor
+( 2023-03-02 01:18:12 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:29:29 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:29:29 ) error : this.Model is not a constructor
+( 2023-03-02 01:29:29 ) error : this.Model is not a constructor
+( 2023-03-02 01:29:29 ) error : this.Model is not a constructor
+( 2023-03-02 01:29:29 ) error : this.Model is not a constructor
+( 2023-03-02 01:29:29 ) error : this.Model is not a constructor
+( 2023-03-02 01:29:29 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:29:57 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:29:57 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:29:57 ) error : this.Model is not a constructor
+( 2023-03-02 01:29:57 ) error : this.Model is not a constructor
+( 2023-03-02 01:29:57 ) error : this.Model is not a constructor
+( 2023-03-02 01:29:57 ) error : this.Model is not a constructor
+( 2023-03-02 01:29:57 ) error : this.Model is not a constructor
+( 2023-03-02 01:29:57 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:30:53 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:30:53 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:30:53 ) error : this.Model is not a constructor
+( 2023-03-02 01:30:53 ) error : this.Model is not a constructor
+( 2023-03-02 01:30:53 ) error : this.Model is not a constructor
+( 2023-03-02 01:30:53 ) error : this.Model is not a constructor
+( 2023-03-02 01:30:53 ) error : this.Model is not a constructor
+( 2023-03-02 01:30:53 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:31:32 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:31:32 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:31:32 ) error : this.Model is not a constructor
+( 2023-03-02 01:31:32 ) error : this.Model is not a constructor
+( 2023-03-02 01:31:32 ) error : this.Model is not a constructor
+( 2023-03-02 01:31:32 ) error : this.Model is not a constructor
+( 2023-03-02 01:31:32 ) error : this.Model is not a constructor
+( 2023-03-02 01:31:32 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:34:18 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:34:18 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:34:18 ) error : this.Model is not a constructor
+( 2023-03-02 01:34:18 ) error : this.Model is not a constructor
+( 2023-03-02 01:34:18 ) error : this.Model is not a constructor
+( 2023-03-02 01:34:18 ) error : this.Model is not a constructor
+( 2023-03-02 01:34:18 ) error : this.Model is not a constructor
+( 2023-03-02 01:34:18 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:34:35 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:34:35 ) error : this.Model is not a constructor
+( 2023-03-02 01:34:35 ) error : this.Model is not a constructor
+( 2023-03-02 01:34:35 ) error : this.Model is not a constructor
+( 2023-03-02 01:34:35 ) error : this.Model is not a constructor
+( 2023-03-02 01:34:35 ) error : this.Model is not a constructor
+( 2023-03-02 01:34:35 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:35:03 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:03 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:03 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:03 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:03 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:48 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:48 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:48 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:48 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:48 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:59 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:59 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:59 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:59 ) error : this.Model is not a constructor
+( 2023-03-02 01:35:59 ) error : this.Model is not a constructor
+( 2023-03-02 01:36:01 ) error : this.Model is not a constructor
+( 2023-03-02 01:36:01 ) error : this.Model is not a constructor
+( 2023-03-02 01:36:01 ) error : this.Model is not a constructor
+( 2023-03-02 01:36:01 ) error : this.Model is not a constructor
+( 2023-03-02 01:36:01 ) error : this.Model is not a constructor
+( 2023-03-02 01:36:04 ) error : this.Model is not a constructor
+( 2023-03-02 01:36:04 ) error : this.Model is not a constructor
+( 2023-03-02 01:36:04 ) error : this.Model is not a constructor
+( 2023-03-02 01:36:04 ) error : this.Model is not a constructor
+( 2023-03-02 01:36:04 ) error : this.Model is not a constructor
+( 2023-03-02 01:39:04 ) error : this.Model is not a constructor
+( 2023-03-02 01:39:04 ) error : this.Model is not a constructor
+( 2023-03-02 01:39:04 ) error : this.Model is not a constructor
+( 2023-03-02 01:39:04 ) error : this.Model is not a constructor
+( 2023-03-02 01:39:04 ) error : this.Model is not a constructor
+( 2023-03-02 01:40:27 ) error : this.Model is not a constructor
+( 2023-03-02 01:40:27 ) error : this.Model is not a constructor
+( 2023-03-02 01:40:27 ) error : this.Model is not a constructor
+( 2023-03-02 01:40:27 ) error : this.Model is not a constructor
+( 2023-03-02 01:40:27 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:14 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:45:14 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:14 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:14 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:14 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:14 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:14 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:45:19 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:45:19 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:19 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:19 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:19 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:19 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:19 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:45:27 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:45:27 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:27 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:27 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:27 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:27 ) error : this.Model is not a constructor
+( 2023-03-02 01:45:27 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:51:38 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:51:38 ) error : this.Model is not a constructor
+( 2023-03-02 01:51:38 ) error : this.Model is not a constructor
+( 2023-03-02 01:51:38 ) error : this.Model is not a constructor
+( 2023-03-02 01:51:38 ) error : this.Model is not a constructor
+( 2023-03-02 01:51:38 ) error : this.Model is not a constructor
+( 2023-03-02 01:51:38 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:53:37 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:53:37 ) error : this.Model is not a constructor
+( 2023-03-02 01:53:37 ) error : this.Model is not a constructor
+( 2023-03-02 01:53:37 ) error : this.Model is not a constructor
+( 2023-03-02 01:53:37 ) error : this.Model is not a constructor
+( 2023-03-02 01:53:37 ) error : this.Model is not a constructor
+( 2023-03-02 01:53:37 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:54:32 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:54:32 ) error : this.Model is not a constructor
+( 2023-03-02 01:54:32 ) error : this.Model is not a constructor
+( 2023-03-02 01:54:32 ) error : this.Model is not a constructor
+( 2023-03-02 01:54:32 ) error : this.Model is not a constructor
+( 2023-03-02 01:54:32 ) error : this.Model is not a constructor
+( 2023-03-02 01:54:32 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:59:40 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:59:40 ) error : this.Model is not a constructor
+( 2023-03-02 01:59:40 ) error : this.Model is not a constructor
+( 2023-03-02 01:59:40 ) error : this.Model is not a constructor
+( 2023-03-02 01:59:40 ) error : this.Model is not a constructor
+( 2023-03-02 01:59:40 ) error : this.Model is not a constructor
+( 2023-03-02 01:59:40 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 01:59:58 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 01:59:58 ) error : this.Model is not a constructor
+( 2023-03-02 01:59:58 ) error : this.Model is not a constructor
+( 2023-03-02 01:59:58 ) error : this.Model is not a constructor
+( 2023-03-02 01:59:58 ) error : this.Model is not a constructor
+( 2023-03-02 01:59:58 ) error : this.Model is not a constructor
+( 2023-03-02 01:59:58 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 02:00:41 ) error : Cannot read properties of undefined (reading 'deleteMany')
+( 2023-03-02 02:00:41 ) error : this.Model is not a constructor
+( 2023-03-02 02:00:41 ) error : this.Model is not a constructor
+( 2023-03-02 02:00:41 ) error : this.Model is not a constructor
+( 2023-03-02 02:00:41 ) error : this.Model is not a constructor
+( 2023-03-02 02:00:41 ) error : this.Model is not a constructor
+( 2023-03-02 02:00:41 ) error : Cannot read properties of undefined (reading 'find')
