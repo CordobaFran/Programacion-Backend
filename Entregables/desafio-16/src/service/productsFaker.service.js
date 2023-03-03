@@ -1,6 +1,6 @@
 const ApiProductosMock = require('../../api/productos')
 const apiProductos = new ApiProductosMock()
-const { loggerError } = require('../../logger')
+const { loggerError } = require('../../utils/logger')
 
 const productsCreate = async (qty, next)=>{
     try {

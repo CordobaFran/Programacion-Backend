@@ -1,6 +1,6 @@
 const ContenedorArchivo = require( "../../containers/contenedorArchivo.js");
 const fs = require( 'fs');
-const { loggerError, loggerWarn } = require("../../../logger.js");
+const { loggerError, loggerWarn } = require("../../../utils/logger.js");
 
 class CarritosDaoArchivo extends ContenedorArchivo {
     constructor(){

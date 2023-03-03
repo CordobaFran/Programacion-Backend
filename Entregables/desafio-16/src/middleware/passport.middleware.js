@@ -6,9 +6,10 @@ const GithubStrategy = require('passport-github2').Strategy
 const bcrypt = require('bcrypt')
 
 const { users } = require('../../db/users')
-const { loggerWarn } = require('../../logger')
+const { loggerWarn } = require('../../utils/logger')
 
 const createHash = (password) => {
+    // console.log(password);
     return bcrypt.hashSync(
         password,
         bcrypt.genSaltSync(10),

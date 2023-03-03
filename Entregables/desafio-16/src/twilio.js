@@ -1,5 +1,5 @@
 const twilio = require('twilio')
-const { loggerError } = require('../logger')
+const { loggerError } = require('../utils/logger')
 const options = require('../options/options')
 
 

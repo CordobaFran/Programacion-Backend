@@ -1,0 +1,66 @@
+const userContainer = require('../containers/UserContainer')
+const UserContainer = new userContainer()
+
+const nodeMailer = require('../nodemailer')
+const { createHash } = require('../middleware/passport.middleware')
+
+const registerRootGet = async (req, res) => {
+    res.render('register')
+}
+
+const registerPost = async (req, res) => {
+
+    const { username, password, email, admin, name, age, phoneNumber, address, profileUrl } = req.body
+
+    if (!req.file) {
+        profilePicture = profileUrl
+    } else {
+        let filePath = req.file.path
+        let publicFilePath = filePath.substring(6)
+        profilePicture = publicFilePath
+    }
+
+    const userExists = await UserContainer.findUserAndEmail(username, email)
+
+    if (userExists) {
+        // return res.status(301).json({ error: "user or email exists" })
+        const error = `
+        <div style="margin: 20px">
+            <h1>username or e-mail exists</h1>
+            <p>Use other username or e-mail</p>
+            <a href="javascript:window.history.back()"> Back to Register</a>
+        </div>
+        `
+        return res.send(error) 
+        // res.end()
+    }
+
+    const newUser = {
+        username,
+        email,
+        password: await createHash(password),
+        admin,
+        name,
+        age,
+        phoneNumber,
+        address,
+        profilePicture
+    }
+
+    nodeMailer(newUser)
+    UserContainer.createUser(newUser)
+
+    // const access_token = generateToken(newUser)
+    res.redirect('/auth/login')
+    // res.json({ access_token })
+}
+
+module.exports ={
+    registerRootGet,
+    registerPost
+}
+
+// router.post("/register", passport.authenticate('register', {
+//     successRedirect: '/auth/login',
+//     failureRedirect: '/auth/register'
+// }))

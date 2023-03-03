@@ -1,6 +1,6 @@
 const { options } = require('./options/options')
 const { httpServer, socketIo } = require('./socketio')
-const {loggerConsole, loggerError} = require('./logger')
+const {loggerConsole, loggerError} = require('./utils/logger')
 
 const PORT = options.PORT
 

@@ -25,4 +25,7 @@ const serverData = async (req, res) => {
 
 }
 
-module.exports = { serverInfo, serverData }
+module.exports = {
+    serverInfo,
+    serverData
+}

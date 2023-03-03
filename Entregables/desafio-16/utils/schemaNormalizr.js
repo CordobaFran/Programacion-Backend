@@ -5,7 +5,7 @@ const { schema, normalize, denormalize } = normalizr
 const util = require('util')
 
 const fs = require('fs')
-const { loggerConsole } = require('../logger')
+const { loggerConsole } = require('../utils/logger')
 const chatMsjsJson = './db/chatMsg.json'
 
 function print(text = "", objeto) {

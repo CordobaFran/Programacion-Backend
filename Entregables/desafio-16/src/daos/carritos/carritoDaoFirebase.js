@@ -1,6 +1,6 @@
 const ContenedorFirebase  = require( '../../containers/contenedorFirebase.js')
 const admin  = require( 'firebase-admin')
-const { loggerWarn, loggerError } = require('../../../logger.js')
+const { loggerWarn, loggerError } = require('../../../utils/logger.js')
 
 class CarritoDaoFirebase extends ContenedorFirebase {
     constructor() {

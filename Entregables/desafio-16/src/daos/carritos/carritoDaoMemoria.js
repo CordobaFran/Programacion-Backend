@@ -1,4 +1,4 @@
-const { loggerError, loggerWarn } = require("../../../logger.js")
+const { loggerError, loggerWarn } = require("../../../utils/logger.js")
 const ContenedorMemoria = require( "../../containers/contenedorMemoria.js")
 
 class CarritoDaoMemoria extends ContenedorMemoria {

@@ -1,6 +1,6 @@
 
 const fs = require( "fs" )
-const { loggerConsole, loggerError, loggerWarn } = require('../../logger')
+const { loggerConsole, loggerError, loggerWarn } = require('../../utils/logger')
 // const { readFile } = require('fs/promises')
 
 class ContenedorArchivo {

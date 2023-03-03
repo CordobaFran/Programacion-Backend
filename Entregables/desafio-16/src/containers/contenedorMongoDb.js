@@ -1,6 +1,6 @@
 const mongoose = require( 'mongoose')
 const config = require( '../config.js')
-const { loggerConsole, loggerError, loggerWarn } = require('../../logger')
+const { loggerConsole, loggerError, loggerWarn } = require('../../utils/logger')
 
 const { ProductsModel } = require( '../models/products')
 const { CartsModel } = require( '../models/carts')

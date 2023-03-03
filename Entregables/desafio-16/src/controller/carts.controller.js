@@ -49,4 +49,8 @@ const cartCheckout = async (req, res) => {
 }
 
 
-module.exports = { cartsAll, cartId, cartCheckout }
+module.exports = {
+    cartsAll,
+    cartId,
+    cartCheckout
+}

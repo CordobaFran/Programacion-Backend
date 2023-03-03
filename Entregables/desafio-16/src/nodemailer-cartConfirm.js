@@ -1,5 +1,5 @@
 const { createTransport } = require("nodemailer");
-const { loggerError } = require("../logger");
+const { loggerError } = require("../utils/logger");
 
 const DEST_MAIL = 'francocordobafs@gmail.com'
 

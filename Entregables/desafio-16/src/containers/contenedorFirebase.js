@@ -1,6 +1,6 @@
 const admin = require('firebase-admin')
 const config  = require( '../config.js')
-const { loggerConsole, loggerError, loggerWarn } = require('../../logger')
+const { loggerConsole, loggerError, loggerWarn } = require('../../utils/logger')
 
 admin.initializeApp({
   credential: admin.credential.cert(config.firebase)

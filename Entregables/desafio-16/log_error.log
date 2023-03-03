@@ -180,3 +180,26 @@
 ( 2023-03-02 02:00:41 ) error : this.Model is not a constructor
 ( 2023-03-02 02:00:41 ) error : this.Model is not a constructor
 ( 2023-03-02 02:00:41 ) error : Cannot read properties of undefined (reading 'find')
+( 2023-03-02 20:05:42 ) error : Error con codigo: 1
+( 2023-03-02 20:07:42 ) error : users validation failed: age: Path `age` (123) is more than maximum allowed value (3)., phoneNumber: Path `phoneNumber` (123123123) is more than maximum allowed value (100).
+( 2023-03-02 20:29:02 ) error : Error con codigo: 1
+( 2023-03-02 20:33:49 ) error : Error con codigo: 1
+( 2023-03-02 20:34:58 ) error : Error con codigo: 1
+( 2023-03-02 20:35:23 ) error : Error con codigo: 1
+( 2023-03-02 20:40:08 ) error : Error con codigo: 1
+( 2023-03-02 20:41:38 ) error : Error con codigo: 1
+( 2023-03-02 20:45:43 ) error : Error con codigo: 1
+( 2023-03-02 20:46:17 ) error : Error con codigo: 1
+( 2023-03-02 20:46:54 ) error : Error con codigo: 1
+( 2023-03-02 20:56:04 ) error : next is not a function
+( 2023-03-02 20:56:27 ) error : next is not a function
+( 2023-03-02 20:59:46 ) error : Error con codigo: 1
+( 2023-03-02 21:00:27 ) error : Error con codigo: 1
+( 2023-03-02 21:00:54 ) error : Error con codigo: 1
+( 2023-03-02 21:02:50 ) error : Error con codigo: 1
+( 2023-03-02 21:08:34 ) error : Error con codigo: 1
+( 2023-03-02 21:10:52 ) error : Error con codigo: 1
+( 2023-03-02 21:11:24 ) error : Error con codigo: 1
+( 2023-03-02 21:19:53 ) error : users validation failed: age: Path `age` (30) is more than maximum allowed value (3)., phoneNumber: Path `phoneNumber` (1136456799) is more than maximum allowed value (100).
+( 2023-03-02 21:21:12 ) error : users validation failed: age: Path `age` (30) is more than maximum allowed value (3)., phoneNumber: Path `phoneNumber` (1136456799) is more than maximum allowed value (100).
+( 2023-03-02 23:15:55 ) error : Cast to ObjectId failed for value "randoms" (type string) at path "_id" for model "products"

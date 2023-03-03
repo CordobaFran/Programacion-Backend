@@ -1,5 +1,5 @@
 const productsCreate = require('../service/productsFaker.service')
-const { loggerError } = require('../../logger')
+const { loggerError } = require('../../utils/logger')
 
 const productsFaker = async (req, res, next) => {
 

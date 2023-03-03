@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const { options } = require('../../options/options')
 const { UsersModel } = require("../models/users")
 const { isValidPassword } = require('../middleware/passport.middleware')
-const { loggerError, loggerConsole } = require('../../logger')
+const { loggerError, loggerConsole } = require('../../utils/logger')
 
 // createDb()
 module.exports = class Container {

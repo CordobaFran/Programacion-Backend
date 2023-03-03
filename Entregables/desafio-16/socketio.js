@@ -13,7 +13,7 @@ const Carritos = require('./src/daos/carritosDao')
 const cart = new Carritos('carritos')
 
 const Chat = require('./chat')
-const { loggerConsole } = require('./logger')
+const { loggerConsole } = require('./utils/logger')
 const msjs = new Chat("chat")
 
 io.on('connection', async socket => {
