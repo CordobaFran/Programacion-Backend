@@ -1,6 +1,6 @@
 // const Container = require('../containers/Container')
 const productos = require('../src/daos/productosDao')
-const { generarProducto } = require('../utils/generadorDeProductos')
+const { generarProducto } = require('../src/utils/generadorDeProductos')
 
 module.exports = class ApiProductosMock extends productos {
     constructor() {

@@ -24,9 +24,9 @@ nodemon server 8082 CLUSTER
 # Resultados de comparación fork vs. cluster con Artillery
 
 * ## **Fork**
-![result_fork](artillery_fork.png)
+![result_fork](public/images/artillery_fork.png)
 
 * ## **Cluster**
-![result_fork](artillery_cluster.png)
+![result_fork](public/images/artillery_cluster.png)
 
 

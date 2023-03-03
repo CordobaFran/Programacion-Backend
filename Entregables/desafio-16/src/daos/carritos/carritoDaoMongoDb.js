@@ -1,6 +1,6 @@
 const ContenedorMongo = require('../../containers/contenedorMongoDb.js')
 const mongoose = require('mongoose')
-const { loggerError } = require('../../../utils/logger.js')
+const { loggerError } = require('../../utils/logger.js')
 
 class CarritoDaoMongo extends ContenedorMongo {
     constructor() {

@@ -1,9 +1,9 @@
 const Carritos = require('../daos/carritosDao')
 const cart = new Carritos('carritos')
 
-const nodeMailerCart = require('../nodemailer-cartConfirm')
+const nodeMailerCart = require('../utils/nodemailer-cartConfirm')
 
-const { twilioSms, twilioWsap } = require('../twilio')
+const { twilioSms, twilioWsap } = require('../utils/twilio')
 
 
 const cartsAll = async (req, res) => {

@@ -1,7 +1,7 @@
 const userContainer = require('../containers/UserContainer')
 const UserContainer = new userContainer()
 
-const nodeMailer = require('../nodemailer')
+const nodeMailer = require('../utils/nodemailer')
 const { createHash } = require('../middleware/passport.middleware')
 
 const registerRootGet = async (req, res) => {

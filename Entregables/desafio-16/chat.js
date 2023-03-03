@@ -1,5 +1,5 @@
-const { normalizedChatpost, denormalizedChatPost } = require('./utils/schemaNormalizr')
-const { loggerConsole, loggerError, loggerWarn } = require('./utils/logger')
+const { normalizedChatpost, denormalizedChatPost } = require('./src/utils/schemaNormalizr')
+const { loggerConsole, loggerError, loggerWarn } = require('./src/utils/logger')
 const util = require('util')
 const fs = require('fs')
 const db = './db/chatMsg.json'

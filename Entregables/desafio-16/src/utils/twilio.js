@@ -1,6 +1,6 @@
 const twilio = require('twilio')
-const { loggerError } = require('../utils/logger')
-const options = require('../options/options')
+const { loggerError } = require('./logger')
+const options = require('../../options/options')
 
 
 const { sid, token, smsActivated, wsapActivated } = options.options.twilio

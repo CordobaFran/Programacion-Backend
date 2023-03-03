@@ -1,4 +1,4 @@
-const { loggerError } = require('../../utils/logger')
+const { loggerError } = require('../utils/logger')
 const ProductsDAOs = require('../daos/productosDao')
 
 class ProductsService {
