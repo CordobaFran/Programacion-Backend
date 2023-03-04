@@ -2,7 +2,7 @@ const ContenedorMongoDb = require('../../containers/contenedorMongoDb.js')
 
 module.exports = class ProductosDaoMongoDb extends ContenedorMongoDb {
     constructor() {
-        super('productos')
+        super('products')
     }
 }
 

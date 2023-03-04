@@ -184,7 +184,7 @@ socket.on('messages', data => {
 
 
 socket.on('messages-sv', data => {
-    const denormalizado = normalizr.denormalize(data.normalizedChatpost.result, post, data.normalizedChatpost.entities)
+    denormalizado = normalizr.denormalize(data.normalizedChatpost.result, post, data.normalizedChatpost.entities)
     // console.log(data, "sv");
     renderMessages(denormalizado.posts[0].messages)
 })

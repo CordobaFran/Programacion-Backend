@@ -1,6 +1,5 @@
 const {Schema, model} = require ('mongoose')
 
-
 const productCollection = 'users'
 
 const productSchema = new Schema({

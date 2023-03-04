@@ -9,11 +9,6 @@ const PORT = options.PORT
 const cluster = require('cluster')
 const numCPUs = require('os').cpus().length
 
-<<<<<<< HEAD
-const compression = require('compression')
-=======
-
->>>>>>> a962dbb43abfcdd2de1f07a6902c659a3bd48b6b
 
 if (options.MODE == 'CLUSTER' && cluster.isPrimary) {
 

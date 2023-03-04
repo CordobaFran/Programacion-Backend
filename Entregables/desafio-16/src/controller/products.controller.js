@@ -1,4 +1,3 @@
-const Contenedor = require('../daos/productosDao')
 const { ProductsService } = require('../service/products.service')
 const productos = new ProductsService()
 

@@ -6,26 +6,26 @@ const { Server: IOServer } = require('socket.io')
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 
-const Contenedor = require('./src/daos/productosDao')
-const productos = new Contenedor()
+const { ProductsService } = require('./src/service/products.service')
+const productsService = new ProductsService()
 
-const Carritos = require('./src/daos/carritosDao')
-const cart = new Carritos('carritos')
+const { CartsService } = require('./src/service/carts.service')
+const cartsService = new CartsService('carritos')
 
 const Chat = require('./chat')
 const { loggerConsole } = require('./src/utils/logger')
 const msjs = new Chat("chat")
 
 io.on('connection', async socket => {
-    const products = await productos.getAll()
+    const products = await productsService.getAllProducts()
     const messages = await msjs.getMsj()
-    const carts = await cart.getAll()
+    const carts = await cartsService.getAllCarts()
 
     loggerConsole.info("usuario conectado");
     socket.emit("products-sv", products)
     socket.on('add-product', async (data) => {
-        await productos.create(data)
-        io.sockets.emit('products-sv', await productos.getAll())
+        await productsService.createProduct(data)
+        io.sockets.emit('products-sv', await productsService.getAllProducts())
     }
     )
     socket.emit("messages", messages)
@@ -38,7 +38,7 @@ io.on('connection', async socket => {
     //     await msjs.addMsj(data)
     //     io.sockets.emit("messages-sv", await msjs.getMsj())
     // })
-    
+
 })
 
 module.exports = {

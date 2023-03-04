@@ -1,4 +1,9 @@
 # Entregable 14
+## Loggers, gzip y análisis de performance
+
+</br>
+</br>
+</br>
 
 ## Comparación de /info con GZIP
 </br>

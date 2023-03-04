@@ -1,0 +1,83 @@
+const { loggerError } = require('../utils/logger')
+const UsersDAOs = require('../daos/usersDAOs')
+
+class UsersService {
+    constructor() {
+        this.usersDAOs = new UsersDAOs()
+    }
+
+    async getAllUsers() {
+        try {
+            return await this.usersDAOs.getAll()
+
+        } catch (error) {
+            loggerError.error(error)
+        }
+    }
+
+    async getUserById(id) {
+        try {
+            const user = await this.usersDAOs.getById(id)
+            return user
+
+        } catch (error) {
+            loggerError.error(error)
+        }
+    }
+
+    async createUser(userData) {
+        try {
+            const newUser = {
+                ...userData,
+                addedDate: Date.now()
+            }
+            const newUserCreate = await this.usersDAOs.create(newUser)
+            return newUserCreate
+
+        } catch (error) {
+            loggerError.error(error)
+        }
+    }
+
+    async updateUser(id, user) {
+        try {
+            const updatedUser = await this.usersDAOs.update(id, user)
+            return updatedUser
+
+        } catch (error) {
+            loggerError.error(error)
+        }
+    }
+
+    async deleteUser(id) {
+        try {
+            const deletedUser = await this.usersDAOs.delete(id)
+            return deletedUser
+
+        } catch (error) {
+            loggerError.error(error)
+        }
+    }
+
+    async findEmailAndUser(username, email) {
+        try {
+            const find = await this.usersDAOs.findUserAndEmail(username, email)
+            return find
+            
+        } catch (error) {
+            loggerError.error(error)
+        }
+    }
+
+    async validPassAndUser(user, pass) {
+        try {
+            const valid = await this.usersDAOs.validUserAndPass(user, pass)
+            return valid
+
+        } catch (error) {
+            loggerError.error(error)
+        }
+    }
+}
+
+module.exports = { UsersService }

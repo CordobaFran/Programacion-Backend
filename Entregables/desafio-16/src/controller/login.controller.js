@@ -1,5 +1,5 @@
-const userContainer = require('../containers/UserContainer')
-const UserContainer = new userContainer()
+const { UsersService } = require('../service/users.service')
+const usersService = new UsersService()
 
 const { generateToken } = require('../middleware/JWTgenerate.middleware')
 
@@ -11,10 +11,9 @@ const loginRootGet = async (req, res) => {
 
 const loginUsernamePost = async (req, res) => {
     const { username, password } = req.body
+    const loginSuccessUser = await usersService.validPassAndUser(username, password)
 
-    const loginSuccessUser = await UserContainer.validUserAndPass(username, password)
-
-    if (!loginSuccessUser) {
+    if (await !loginSuccessUser) {
         // return res.json({ error: "Credenciales invalidas" })
         const error = `
         <div style="margin: 20px">

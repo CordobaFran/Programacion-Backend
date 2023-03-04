@@ -1,5 +1,6 @@
-const Carritos = require('../daos/carritosDao')
-const cart = new Carritos('carritos')
+// const Carritos = require('../daos/carritosDao')
+const { CartsService } = require ('../service/carts.service')
+const cart = new CartsService('carritos')
 
 const nodeMailerCart = require('../utils/nodemailer-cartConfirm')
 
@@ -8,7 +9,7 @@ const { twilioSms, twilioWsap } = require('../utils/twilio')
 
 const cartsAll = async (req, res) => {
 
-    const carts = await cart.getAll()
+    const carts = await cart.getAllCarts()
     let cartExists = false
     await !carts ? cartExists = false : cartExists = true
 
@@ -20,7 +21,7 @@ const cartId = async (req, res) => {
     let cartExists = false
 
     const id = req.params.id
-    const cartById = await cart.getById(id)
+    const cartById = await cart.getCartById(id)
     const products = (cartById[0].productos);
     await !cartById ? cartExists = false : cartExists = true
 
@@ -31,7 +32,7 @@ const cartId = async (req, res) => {
 const cartCheckout = async (req, res) => {
     const { username, email } = req.user
     const id = req.params.id
-    const cartById = await cart.getById(id)
+    const cartById = await cart.getCartById(id)
 
     const products = cartById[0].productos
 
@@ -44,6 +45,8 @@ const cartCheckout = async (req, res) => {
     nodeMailerCart(sellData)
     twilioWsap(sellData)
     twilioSms(sellData)
+
+    // await cart.deleteCart(id)
 
     res.json({ msj: "checkout Ok" })
 }

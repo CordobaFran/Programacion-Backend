@@ -1,5 +1,5 @@
-const userContainer = require('../containers/UserContainer')
-const UserContainer = new userContainer()
+const { UsersService } = require('../service/users.service')
+const usersService = new UsersService()
 
 const nodeMailer = require('../utils/nodemailer')
 const { createHash } = require('../middleware/passport.middleware')
@@ -20,7 +20,7 @@ const registerPost = async (req, res) => {
         profilePicture = publicFilePath
     }
 
-    const userExists = await UserContainer.findUserAndEmail(username, email)
+    const userExists = await usersService.findEmailAndUser(username, email)
 
     if (userExists) {
         // return res.status(301).json({ error: "user or email exists" })
@@ -31,14 +31,14 @@ const registerPost = async (req, res) => {
             <a href="javascript:window.history.back()"> Back to Register</a>
         </div>
         `
-        return res.send(error) 
+        return res.send(error)
         // res.end()
     }
 
     const newUser = {
         username,
         email,
-        password: await createHash(password),
+        password: createHash(password),
         admin,
         name,
         age,
@@ -48,14 +48,14 @@ const registerPost = async (req, res) => {
     }
 
     nodeMailer(newUser)
-    UserContainer.createUser(newUser)
+    usersService.createUser(newUser)
 
     // const access_token = generateToken(newUser)
     res.redirect('/auth/login')
     // res.json({ access_token })
 }
 
-module.exports ={
+module.exports = {
     registerRootGet,
     registerPost
 }

@@ -1,19 +1,27 @@
-const mongoose = require( 'mongoose')
-const config = require( '../config.js')
+const mongoose = require('mongoose')
+const config = require('../config.js')
 const { loggerConsole, loggerError, loggerWarn } = require('../utils/logger')
 
-const { ProductsModel } = require( '../models/products')
-const { CartsModel } = require( '../models/carts')
+const { ProductsModel } = require('../models/products')
+const { CartsModel } = require('../models/carts')
+const { UsersModel } = require('../models/users')
 
 class Products {
-    constructor(collection) {
-        mongoose.connection.once("disconnected", ()=>{
-            this.connect()
-        })
-        this.Model
+    constructor(collection = 'products') {
+        
+        this.collection = collection
+        this.Model = ProductsModel
 
-    if (collection === 'carritos') {
+        if (mongoose.connection.readyState === 0) {
+            return this.connect()
+        }
+
+        if (collection === 'carritos') {
             this.Model = CartsModel
+
+        } else if (collection === 'users') {
+            this.Model = UsersModel
+
         } else {
             this.Model = ProductsModel
         }
@@ -26,17 +34,19 @@ class Products {
                 useUnifiedTopology: true
             })
             loggerConsole.info('Mongo db connected');
+
         } catch (error) {
             loggerError.error(error);
         }
     }
     //Create document
-    async create(product) {
+    async create(item) {
         try {
-            const newProduct = new this.Model(product)
-            await newProduct.save()
-            loggerWarn.warn('product added');
-            return { status: "product added" }
+            const newItem = new this.Model(item)
+            await newItem.save()
+            loggerWarn.warn(` ${this.collection} added`);
+            return { status: ` ${this.collection} added` }
+
         } catch (error) {
             loggerError.error(error);
         }
@@ -44,8 +54,9 @@ class Products {
     //Read All
     async getAll() {
         try {
-            let products = await this.Model.find({})
-            return products
+            let items = await this.Model.find({})
+            return items
+
         } catch (error) {
             loggerError.error(error);
         }
@@ -53,8 +64,9 @@ class Products {
     //Read by Id
     async getById(id) {
         try {
-            let products = await this.Model.find({ _id: id })
-            return products
+            let items = await this.Model.find({ _id: id })
+            return items
+
         } catch (error) {
             loggerError.error(error);
         }
@@ -62,9 +74,10 @@ class Products {
     //Update Product
     async update(id, params) {
         try {
-            let products = await this.Model.updateOne({ _id: id }, { $set: params })
-            loggerWarn.warn('Edited', products);
+            let items = await this.Model.updateOne({ _id: id }, { $set: params })
+            loggerWarn.warn('Edited', items);
             return { status: "modified" }
+
         } catch (error) {
             loggerError.error(error);
         }
@@ -72,9 +85,10 @@ class Products {
     //Delete Product
     async delete(id) {
         try {
-            let products = await this.Model.deleteOne({ _id: id })
-            loggerWarn.warn('Deleted', products);
-            return { status: `Product ${id} deleted`}
+            let items = await this.Model.deleteOne({ _id: id })
+            loggerWarn.warn(` ${this.collection} deleted`, items);
+            return { status: `${this.collection} ${id} deleted` }
+
         } catch (error) {
             loggerError.error(error);
         }
@@ -83,6 +97,8 @@ class Products {
     async deleteall() {
         try {
             await this.Model.deleteMany({})
+            return { status: ` All ${this.collection} deleted` }
+
         } catch (error) {
             loggerError.error(error);
         }
