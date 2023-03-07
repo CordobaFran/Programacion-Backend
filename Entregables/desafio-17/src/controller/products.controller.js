@@ -1,6 +1,10 @@
 const { ProductsService } = require('../service/products.service')
 const productos = new ProductsService()
-const jwt = require('jsonwebtoken')
+
+
+const getNewProduct= async (req, res) => {
+    res.render('productAdd')
+}
 
 const getOnlyProducts = async (req, res) => {
     const products = await productos.getAllProducts()
@@ -15,7 +19,6 @@ const getProducts = async (req, res) => {
     const products = await productos.getAllProducts()
 
     let productExists = false
-    let username;
     // const username = users.find(user => user.id === req.session.passport.user).username
 
     !req.user ? username = "no definido" : username = req.user.username
@@ -27,7 +30,7 @@ const getProducts = async (req, res) => {
 }
 
 const getProductId = async (req, res) => {
-    const cartId = jwt.decode(req.cookies["authorization"]).data.cartId
+    const cartId = req.user.cartId
 
     const id = req.params.id
     const product = await productos.getProductById(id)
@@ -52,5 +55,6 @@ module.exports = {
     getProductId,
     editProduct,
     deleteProduct,
-    getOnlyProducts
+    getOnlyProducts,
+    getNewProduct
 }

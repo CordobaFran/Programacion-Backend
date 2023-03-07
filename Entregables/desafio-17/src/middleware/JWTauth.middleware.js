@@ -29,6 +29,7 @@ async function auth(req, res, next) {
             })
         }
         req.user = decoded.data
+
         next()
     })
 }

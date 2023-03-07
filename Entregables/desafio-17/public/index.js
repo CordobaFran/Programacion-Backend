@@ -1,6 +1,7 @@
 const socket = io.connect()
 let denormalizado
 
+
 const addProduct = () => {
     const newProduct = {
         "product": document.getElementById("product").value,
